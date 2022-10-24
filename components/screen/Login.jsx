@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 /* eslint-disable react-native/no-unused-styles */
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Button,
@@ -12,7 +12,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {useTailwind} from 'tailwind-rn/dist';
+import { useTailwind } from 'tailwind-rn/dist';
 import facebookLogo from '../../assets/banner.png';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

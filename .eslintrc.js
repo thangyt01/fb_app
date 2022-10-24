@@ -6,4 +6,7 @@ module.exports = {
     'plugin:react/recommended',
   ],
   parser: 'babel-eslint',
+  rules: {
+    'react/react-in-jsx-scope': 'off',
+  },
 };
