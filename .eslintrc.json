@@ -1,6 +1,6 @@
 {
 	"parserOptions": {
-		"ecmaVersion": 6,
+		"ecmaVersion": 8,
 		"sourceType": "module",
 		"ecmaFeatures": {
 			"jsx": true
@@ -16,5 +16,8 @@
 		"react-native/no-raw-text": 2,
 		"react-native/no-single-element-style-arrays": 2,
 		"react/react-in-jsx-scope": "off"
+	},
+	"env": {
+		"es6": true
 	}
 }
