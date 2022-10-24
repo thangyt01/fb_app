@@ -14,8 +14,10 @@ import {
 import { useTailwind } from 'tailwind-rn/dist';
 import facebookLogo from '../../assets/banner.png';
 
+
 const Login = () => {
 	const tw = useTailwind();
+
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
