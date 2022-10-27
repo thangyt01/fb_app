@@ -35,7 +35,7 @@ const StackScreen = () => {
               iconName = focused ? 'settings-sharp' : 'settings-outline';
             }
 
-            return <Icon name={iconName} size={30} color="#30477C" />;
+            return <Icon name={iconName} size={30} color="#5D5E62" />;
           },
           tabBarShowLabel: false,
         })}>

@@ -34,8 +34,11 @@ const AuthStack = () => {
           screenOptions={{
             headerShown: false,
           }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={BottomTabNavigator} />
+          {isLogged ? (
+            <Stack.Screen name="Home" component={BottomTabNavigator} />
+          ) : (
+            <Stack.Screen name="Login" component={Login} />
+          )}
         </Stack.Navigator>
       </NavigationContainer>
     </AuthProvider>
