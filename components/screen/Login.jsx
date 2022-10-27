@@ -1,9 +1,6 @@
-/* eslint-disable react-native/no-color-literals */
-/* eslint-disable react-native/no-unused-styles */
-import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import {
-  Alert,
   Button,
   Image,
   ScrollView,
@@ -13,10 +10,10 @@ import {
   View,
 } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
+import { login } from '../../api/auth';
 import facebookLogo from '../../assets/banner.png';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const tw = useTailwind();
 
   const [username, setUsername] = useState('');
@@ -24,13 +21,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://bkwatch.me:8010/api/login', {
-        username,
-        password,
-      });
-      AsyncStorage.setItem('token', response.data.data.access_token);
+      // const result = await login({ username, password });
+      // await AsyncStorage.setItem('isLogged', JSON.stringify(true));
+      // setIsLogged(true);
+      // setCurrentUser(result.data.profile);
+      navigation.navigate('Home');
     } catch (error) {
-      Alert.alert(error.response);
+      console.log(error);
     }
   };
 

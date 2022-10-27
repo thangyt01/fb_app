@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const Stories = () => {
+const Video = () => {
   return (
     <View>
-      <Text>Stories</Text>
+      <Text>Video</Text>
     </View>
   );
 };
 
-export default Stories;
+export default Video;

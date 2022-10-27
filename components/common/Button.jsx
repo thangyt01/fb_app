@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react-native/no-color-literals */
 import React from 'react';
 import { Pressable, Text, TouchableOpacity } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';

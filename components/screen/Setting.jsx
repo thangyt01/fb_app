@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const Activity = () => {
+const Setting = () => {
   return (
     <View>
-      <Text>Activity</Text>
+      <Text>Setting</Text>
     </View>
   );
 };
 
-export default Activity;
+export default Setting;

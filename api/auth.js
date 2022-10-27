@@ -1,12 +1,17 @@
+import axios from 'axios';
+import axiosClient from '../config/axiosClient';
 import { Alert } from 'react-native';
 
-const login = async () => {
+const login = async ({ username, password }) => {
   try {
-    /**
-     * code
-     */
+    const response = await axios.post('https://devapi.bkwatch.me/api/login', {
+      username,
+      password,
+    });
+
+    return response.data;
   } catch (error) {
-    Alert.alert(error);
+    Alert.alert(JSON.stringify(error));
   }
 };
 
@@ -16,28 +21,35 @@ const register = async () => {
      * code
      */
   } catch (error) {
-    Alert.alert(error);
+    Alert.alert(JSON.stringify(error));
   }
 };
 
 const logout = async () => {
   try {
-    /**
-     * code
-     */
+    await axios.post('https://devapi.bkwatch.me/api/logout');
   } catch (error) {
-    Alert.alert(error);
+    Alert.alert(JSON.stringify(error));
   }
 };
 
 const refreshAccessToken = async () => {
   try {
-    /**
-     * code
-     */
+    await axios.post('https://devapi.bkwatch.me/api/refresh-token');
   } catch (error) {
-    Alert.alert(error);
+    Alert.alert(JSON.stringify(error));
   }
 };
 
-export { refreshAccessToken, login, register, logout };
+const getProfile = async () => {
+  try {
+    const response = await axiosClient.get(
+      'https://devapi.bkwatch.me/api/profile',
+    );
+    return response.data;
+  } catch (error) {
+    Alert.alert(JSON.stringify(error));
+  }
+};
+
+export { refreshAccessToken, login, register, logout, getProfile };

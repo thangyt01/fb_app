@@ -3,10 +3,9 @@ import { Alert } from 'react-native';
 import { refreshAccessToken } from '../api/auth';
 
 const axiosClient = axios.create({
-  baseURL: '',
+  baseURL: 'https://devapi.bkwatch.me/api/',
   timeout: 50000,
   headers: {
-    Authorization: `Bearer `,
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
@@ -19,8 +18,7 @@ axiosClient.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
     if (error.response.status === 401) {
-      const access_token = await refreshAccessToken();
-      originalRequest.headers['Authorization'] = 'Bearer ' + access_token;
+      await refreshAccessToken();
       return axiosClient(originalRequest);
     }
     return Alert.alert(error);
