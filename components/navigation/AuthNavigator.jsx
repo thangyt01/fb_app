@@ -2,7 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import AuthProvider, { useAuth } from '../context/AuthContext';
+import CreatePost from '../screen/CreatePost';
 import Login from '../screen/Login';
+import Search from '../screen/Search';
 import BottomTabNavigator from './BottomTabNavigator';
 
 const AuthStack = () => {
@@ -11,6 +13,7 @@ const AuthStack = () => {
   const {
     authStateContext: { isLogged },
   } = useAuth();
+
   //   useEffect(() => {
   //     const refreshApp = async () => {
   //       setIsLoading(true);
@@ -28,20 +31,31 @@ const AuthStack = () => {
   //   }, []);
 
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          {isLogged ? (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          animation: 'slide_from_right',
+        }}>
+        {isLogged ? (
+          <>
             <Stack.Screen name="Home" component={BottomTabNavigator} />
-          ) : (
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen
+              name="CreatePost"
+              component={CreatePost}
+              options={{
+                animation: 'slide_from_bottom',
+              }}
+            />
+          </>
+        ) : (
+          <>
             <Stack.Screen name="Login" component={Login} />
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthProvider>
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

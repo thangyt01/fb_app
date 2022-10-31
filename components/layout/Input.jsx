@@ -1,9 +1,13 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { TextInput, TouchableOpacity, View } from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Conan from '../../assets/conan.jpeg';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Avatar from '../common/Avatar';
 
 const Input = () => {
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -11,41 +15,47 @@ const Input = () => {
         paddingHorizontal: 10,
         paddingTop: 10,
         paddingBottom: 10,
-        //   width: '100%',
       }}>
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
-        <Image
-          source={Conan}
-          style={{
-            width: 50,
-            height: 50,
-            borderRadius: 100,
-            marginRight: 2,
-          }}
-        />
+        <Avatar source={Conan} />
 
-        <TextInput
+        <TouchableOpacity
           style={{
             flexGrow: 1,
-            padding: 10,
-            width: '100%',
-            fontSize: 20,
+            paddingVertical: 5,
+            paddingHorizontal: 7,
           }}
-          multiline={true}
-          placeholder="What's on your mind?"
-        />
+          onPress={() => navigation.navigate('CreatePost')}>
+          <TextInput
+            style={{
+              flexGrow: 1,
+              paddingHorizontal: 10,
+              paddingVertical: 2,
+              fontSize: 14,
+              borderWidth: 1,
+              borderRadius: 25,
+              borderColor: '#E5E7EC',
+            }}
+            editable={false}
+            placeholder="What's on your mind?"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <AntDesignIcon name="picture" color="#4CAF50" size={32} />
+        </TouchableOpacity>
       </View>
 
-      <View
+      {/* <View
         style={{
           marginVertical: 10,
           width: '100%',
           height: 0.5,
-          backgroundColor: '#ccc',
+          backgroundColor: '#ddd',
         }}></View>
 
       <View
@@ -63,7 +73,7 @@ const Input = () => {
         <TouchableOpacity>
           <MaterialIcon name="meeting-room" color="#E141FC" size={30} />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };

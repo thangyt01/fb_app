@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -9,6 +10,7 @@ import { useTailwind } from 'tailwind-rn';
 
 const Header = () => {
   const tw = useTailwind();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView>
@@ -43,7 +45,7 @@ const Header = () => {
           </View>
 
           <View style={styles.icon}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
               <Icon name="ios-search" size={28} color="black" />
             </TouchableOpacity>
           </View>
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    paddingVertical: 10,
     alignItems: 'center',
     backgroundColor: 'white',
     paddingHorizontal: 10,

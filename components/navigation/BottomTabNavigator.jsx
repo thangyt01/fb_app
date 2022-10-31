@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import Feed from '../screen/Feed';
 import Profile from '../screen/Profile';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Header from '../common/Header';
+import Header from '../layout/Header';
 import RequestFriends from '../screen/RequestFriends';
 import { useTailwind } from 'tailwind-rn/dist';
 import Setting from '../screen/Setting';
@@ -35,7 +35,13 @@ const StackScreen = () => {
               iconName = focused ? 'settings-sharp' : 'settings-outline';
             }
 
-            return <Icon name={iconName} size={30} color="#5D5E62" />;
+            return (
+              <Icon
+                name={iconName}
+                size={30}
+                color={focused ? '#3673CB' : '#5D5E62'}
+              />
+            );
           },
           tabBarShowLabel: false,
         })}>

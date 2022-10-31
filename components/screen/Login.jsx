@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import {
   Button,
@@ -10,11 +9,12 @@ import {
   View,
 } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
-import { login } from '../../api/auth';
 import facebookLogo from '../../assets/banner.png';
+import { useAuth } from '../context/AuthContext';
 
-const Login = ({ navigation }) => {
+const Login = () => {
   const tw = useTailwind();
+  const { dispatchAuth } = useAuth();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,9 +23,13 @@ const Login = ({ navigation }) => {
     try {
       // const result = await login({ username, password });
       // await AsyncStorage.setItem('isLogged', JSON.stringify(true));
-      // setIsLogged(true);
-      // setCurrentUser(result.data.profile);
-      navigation.navigate('Home');
+      dispatchAuth({
+        type: 'SIGN_IN',
+        payload: {
+          token: 'token',
+          currentUser: 'user',
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -39,11 +43,11 @@ const Login = ({ navigation }) => {
         translucent={true}
       />
 
-      <View style={tw('flex-12')}>
-        <View style={tw('flex-[1.7]')}>
+      <View style={tw('flex-1')}>
+        <View>
           <Image source={facebookLogo} style={tw('w-full h-60')} />
         </View>
-        <View style={tw('flex-3 mx-5')}>
+        <View style={tw('mx-5')}>
           <View style={tw('mt-5')}>
             <TextInput
               style={tw('h-10 border-b-[1px] mb-3 border-b-[#ECEAEC]')}
