@@ -1,8 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { TailwindProvider } from 'tailwind-rn';
-import AuthProvider from './components/context/AuthContext';
-import AuthNavigator from './components/navigation/AuthNavigator';
+import MyStacks from './components/navigation/Stacks';
+import AuthProvider from './context/AuthContext';
 import utilities from './tailwind.json';
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
     <QueryClientProvider client={client}>
       <TailwindProvider utilities={utilities}>
         <AuthProvider>
-          <AuthNavigator />
+          <MyStacks />
         </AuthProvider>
       </TailwindProvider>
     </QueryClientProvider>

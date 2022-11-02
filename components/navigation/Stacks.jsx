@@ -1,13 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import AuthProvider, { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import CreatePost from '../screen/CreatePost';
+import Home from '../screen/Home';
 import Login from '../screen/Login';
 import Search from '../screen/Search';
-import BottomTabNavigator from './BottomTabNavigator';
 
-const AuthStack = () => {
+const Stacks = () => {
   const Stack = createNativeStackNavigator();
 
   const {
@@ -36,10 +36,11 @@ const AuthStack = () => {
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
-        }}>
+        }}
+      >
         {isLogged ? (
           <>
-            <Stack.Screen name="Home" component={BottomTabNavigator} />
+            <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen
               name="CreatePost"
@@ -59,4 +60,4 @@ const AuthStack = () => {
   );
 };
 
-export default AuthStack;
+export default Stacks;

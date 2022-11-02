@@ -6,10 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { useTailwind } from 'tailwind-rn';
 
 const Header = () => {
-  const tw = useTailwind();
   const navigation = useNavigation();
 
   return (
@@ -27,7 +25,8 @@ const Header = () => {
             flexDirection: 'row',
             width: '36%',
             justifyContent: 'space-between',
-          }}>
+          }}
+        >
           <View style={styles.icon}>
             <TouchableOpacity>
               <MaterialIcon name="add" size={28} color="black" />

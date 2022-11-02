@@ -12,7 +12,8 @@ const Post = ({ withPicture }) => {
         style={{
           backgroundColor: 'white',
           padding: 10,
-        }}>
+        }}
+      >
         <Header />
         <Body withPicture={withPicture} />
         <Footer />

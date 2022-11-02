@@ -7,11 +7,13 @@ const Body = ({ withPicture }) => {
     <View
       style={{
         marginTop: 10,
-      }}>
+      }}
+    >
       <Text
         style={{
           textAlign: 'justify',
-        }}>
+        }}
+      >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat culpa
         exercitationem, amet necessitatibus ipsam explicabo? Deserunt fuga
         facere magnam mollitia odio! Facere est quibusdam sint alias excepturi

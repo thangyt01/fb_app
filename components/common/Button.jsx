@@ -8,7 +8,8 @@ const StyledButton = ({ onPress, title, backgroundColor }) => {
   return (
     <Pressable
       style={{ backgroundColor, paddingVertical: 10 }}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       <TouchableOpacity style={tw('w-full items-center')}>
         <Text style={tw('text-white uppercase font-bold')}>{title}</Text>
       </TouchableOpacity>

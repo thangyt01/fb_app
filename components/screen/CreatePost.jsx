@@ -18,7 +18,8 @@ const CreatePost = () => {
         height: '100%',
         padding: 10,
         backgroundColor: 'white',
-      }}>
+      }}
+    >
       <StatusBar
         barStyle="dark-content"
         backgroundColor="white"
@@ -29,12 +30,14 @@ const CreatePost = () => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-          }}>
+          }}
+        >
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <AntDesignIcon name="arrowleft" size={25} />
             </TouchableOpacity>
@@ -42,7 +45,8 @@ const CreatePost = () => {
               style={{
                 marginLeft: 15,
                 fontSize: 20,
-              }}>
+              }}
+            >
               Create post
             </Text>
           </View>
@@ -60,18 +64,21 @@ const CreatePost = () => {
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-          }}>
+          }}
+        >
           <Avatar width={70} height={70} />
           <View
             style={{
               marginLeft: 12,
-            }}>
+            }}
+          >
             <Text
               style={{
                 fontWeight: 'bold',
                 fontSize: 18,
                 marginBottom: 4,
-              }}>
+              }}
+            >
               Chu Hien
             </Text>
 
@@ -83,14 +90,16 @@ const CreatePost = () => {
                 borderColor: '#e5e7ec',
                 borderRadius: 5,
                 padding: 4,
-              }}>
+              }}
+            >
               <AntDesignIcon name="earth" size={12} color="gray" />
               <Text
                 style={{
                   fontWeight: '500',
                   color: 'gray',
                   marginHorizontal: 5,
-                }}>
+                }}
+              >
                 Public
               </Text>
               <AntDesignIcon name="down" size={12} color="gray" />

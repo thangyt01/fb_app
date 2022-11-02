@@ -8,7 +8,8 @@ const Divider = ({ height = 10, styles }) => {
         height,
         backgroundColor: '#C9CAD0',
         ...styles,
-      }}></View>
+      }}
+    ></View>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from 'react';
-import AuthReducer from '../../reducer/AuthReducer';
+import AuthReducer from '../reducer/AuthReducer';
 
 const defaultValue = {
   isLogged: false,

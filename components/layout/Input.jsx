@@ -15,13 +15,15 @@ const Input = () => {
         paddingHorizontal: 10,
         paddingTop: 10,
         paddingBottom: 10,
-      }}>
+      }}
+    >
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between',
-        }}>
+        }}
+      >
         <Avatar source={Conan} />
 
         <TouchableOpacity
@@ -30,7 +32,8 @@ const Input = () => {
             paddingVertical: 5,
             paddingHorizontal: 7,
           }}
-          onPress={() => navigation.navigate('CreatePost')}>
+          onPress={() => navigation.navigate('CreatePost')}
+        >
           <TextInput
             style={{
               flexGrow: 1,

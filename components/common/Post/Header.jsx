@@ -10,12 +10,14 @@ const Header = () => {
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
-      }}>
+      }}
+    >
       <View
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-        }}>
+        }}
+      >
         <Avatar
           source={Conan}
           styles={{
@@ -29,13 +31,15 @@ const Header = () => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Text
               style={{
                 fontSize: 10,
                 color: 'gray',
                 marginRight: 10,
-              }}>
+              }}
+            >
               1 hour ago
             </Text>
 
@@ -48,7 +52,8 @@ const Header = () => {
         style={{
           flexDirection: 'row',
           alignItems: 'flex-start',
-        }}>
+        }}
+      >
         <TouchableOpacity>
           <AntDesignIcon name="ellipsis1" size={25} />
         </TouchableOpacity>

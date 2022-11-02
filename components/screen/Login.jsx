@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
 import facebookLogo from '../../assets/banner.png';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const tw = useTailwind();

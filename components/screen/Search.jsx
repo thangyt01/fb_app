@@ -22,7 +22,8 @@ const Search = () => {
       style={{
         backgroundColor: 'white',
         height: '100%',
-      }}>
+      }}
+    >
       <StatusBar
         barStyle="dark-content"
         backgroundColor="white"
@@ -32,14 +33,16 @@ const Search = () => {
         style={{
           marginTop: 10,
           paddingHorizontal: 10,
-        }}>
+        }}
+      >
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: 20,
-          }}>
+          }}
+        >
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <AntDesignIcon name="arrowleft" size={30} />
           </TouchableOpacity>
@@ -66,14 +69,16 @@ const Search = () => {
         <Text
           style={{
             fontSize: 16,
-          }}>
+          }}
+        >
           History
         </Text>
 
         <ScrollView
           style={{
             marginTop: 10,
-          }}>
+          }}
+        >
           {Array.from(Array(10).keys()).map((_, i) => (
             <TouchableOpacity key={i}>
               <View
@@ -81,12 +86,14 @@ const Search = () => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                   marginBottom: 10,
-                }}>
+                }}
+              >
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                  }}>
+                  }}
+                >
                   <Avatar source={Conan} styles={{ marginRight: 5 }} />
                   <Text>Conan</Text>
                 </View>
