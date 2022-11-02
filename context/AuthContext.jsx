@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react';
 import AuthReducer from '../reducer/AuthReducer';
 
 const defaultValue = {
-  isLogged: false,
+  isLogged: true,
   accessToken: null,
   currentUser: null,
 };

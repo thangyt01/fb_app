@@ -1,19 +1,33 @@
 import React from 'react';
-import { Pressable, Text, TouchableOpacity } from 'react-native';
-import { useTailwind } from 'tailwind-rn/dist';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 
-const StyledButton = ({ onPress, title, backgroundColor }) => {
-  const tw = useTailwind();
-
+const StyledButton = ({
+  onPress,
+  title,
+  backgroundColor = '#2270DC',
+  color = 'white',
+  borderRadius = 10,
+}) => {
   return (
-    <Pressable
-      style={{ backgroundColor, paddingVertical: 10 }}
-      onPress={onPress}
+    <TouchableOpacity
+      style={{
+        backgroundColor,
+        paddingHorizontal: 20,
+        borderRadius,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <TouchableOpacity style={tw('w-full items-center')}>
-        <Text style={tw('text-white uppercase font-bold')}>{title}</Text>
-      </TouchableOpacity>
-    </Pressable>
+      <Text
+        style={{
+          color,
+          fontSize: 16,
+          fontWeight: 'bold',
+        }}
+      >
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 };
 
