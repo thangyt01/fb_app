@@ -12,6 +12,9 @@ const Feed = () => {
         <Divider />
 
         <Post withPicture={true} />
+        <Post withPicture={true} />
+        <Post withPicture={true} />
+        <Post withPicture={true} />
         {/* <Post /> */}
         {/* <Post withPicture={true} /> */}
         {/* <Post /> */}

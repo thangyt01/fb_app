@@ -1,8 +1,8 @@
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import React from 'react';
 import Divider from '../../../common/Divider';
 
-const Header = ({ name, children, onEdit, styles }) => {
+const Header = ({ name, children, onEdit, styles, onPress }) => {
   return (
     <>
       <View
@@ -20,14 +20,16 @@ const Header = ({ name, children, onEdit, styles }) => {
         >
           {name}
         </Text>
-        <Text
-          style={{
-            fontSize: 20,
-            color: '#2270DC',
-          }}
-        >
-          Edit
-        </Text>
+        <Pressable onPress={onPress}>
+          <Text
+            style={{
+              fontSize: 20,
+              color: '#2270DC',
+            }}
+          >
+            Edit
+          </Text>
+        </Pressable>
       </View>
 
       <View
@@ -39,7 +41,7 @@ const Header = ({ name, children, onEdit, styles }) => {
         {children}
       </View>
 
-      <Divider height={1} styles={{ marginVertical: 25 }} />
+      <Divider height={1} styles={{ marginVertical: 15 }} />
     </>
   );
 };

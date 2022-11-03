@@ -15,12 +15,14 @@ const Title = ({ name }) => {
         padding: 10,
         position: 'absolute',
         width: '100%',
+        height: 100,
+        backgroundColor: 'white',
       }}
     >
       <View
         style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <AntDesignIcon name="arrowleft" size={25} />
         </TouchableOpacity>
         <Text

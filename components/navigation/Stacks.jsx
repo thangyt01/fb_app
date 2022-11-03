@@ -35,7 +35,7 @@ const Stacks = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="EditProfile"
+        //   initialRouteName="Profile"
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',

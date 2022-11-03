@@ -1,5 +1,6 @@
 import React from 'react';
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
 const StyledButton = ({
   onPress,
@@ -7,27 +8,34 @@ const StyledButton = ({
   backgroundColor = '#2270DC',
   color = 'white',
   borderRadius = 10,
+  icon,
+  colorIcon = 'white',
+  styles,
 }) => {
   return (
-    <TouchableOpacity
+    <View
       style={{
         backgroundColor,
-        paddingHorizontal: 20,
+        paddingHorizontal: 15,
         borderRadius,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: icon ? 'space-between' : 'center',
+        flexDirection: 'row',
+        ...styles,
       }}
     >
+      {icon ? <AntDesignIcon name={icon} size={20} color={colorIcon} /> : null}
       <Text
         style={{
           color,
           fontSize: 16,
           fontWeight: 'bold',
+          marginLeft: 10,
         }}
       >
         {title}
       </Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
