@@ -78,6 +78,7 @@ const Search = () => {
           style={{
             marginTop: 10,
           }}
+          showsVerticalScrollIndicator={false}
         >
           {Array.from(Array(10).keys()).map((_, i) => (
             <TouchableOpacity key={i}>

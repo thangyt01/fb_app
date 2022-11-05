@@ -5,7 +5,7 @@ import Body from './Body';
 import Footer from './Footer';
 import Header from './Header';
 
-const Post = ({ withPicture }) => {
+const Post = () => {
   return (
     <>
       <View
@@ -15,7 +15,7 @@ const Post = ({ withPicture }) => {
         }}
       >
         <Header />
-        <Body withPicture={withPicture} />
+        <Body />
         <Footer />
       </View>
       <Divider />

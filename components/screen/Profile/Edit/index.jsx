@@ -1,8 +1,10 @@
-import { TouchableOpacity } from '@gorhom/bottom-sheet';
-import { useNavigation } from '@react-navigation/native';
-import React, { useRef, useState } from 'react';
 import {
-  Button,
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from '@gorhom/bottom-sheet';
+import { useNavigation } from '@react-navigation/native';
+import React, { useRef } from 'react';
+import {
   Image,
   Pressable,
   ScrollView,
@@ -15,17 +17,10 @@ import Avatar from '../../../common/Avatar';
 import Title from '../../../common/Title';
 import DataRow from './DataRow';
 import DetailItem from './DetailItem';
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
-
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import StyledButton from '../../../common/Button';
 
 const EditProfile = () => {
-  const [isShowBottomSheet, setIsShowBottomSheet] = useState(false);
-
   const navigation = useNavigation();
 
   const editDetailSheetRef = useRef(null);
@@ -45,9 +40,10 @@ const EditProfile = () => {
             top: 70,
             marginBottom: 50,
           }}
+          showsVerticalScrollIndicator={false}
         >
           <DataRow name="Profile">
-            <Avatar width={150} height={150} />
+            <Avatar size={150} />
           </DataRow>
 
           <DataRow name="Cover photo">
@@ -66,7 +62,6 @@ const EditProfile = () => {
             name="Details"
             onPress={() => {
               editDetailSheetRef.current.present();
-              setIsShowBottomSheet(true);
             }}
           >
             <View
@@ -99,7 +94,13 @@ const EditProfile = () => {
           </DataRow>
         </ScrollView>
 
-        <BottomSheetModal ref={editDetailSheetRef} snapPoints={snapPoints}>
+        <BottomSheetModal
+          ref={editDetailSheetRef}
+          snapPoints={snapPoints}
+          containerStyle={{
+            backgroundColor: '#343434cc',
+          }}
+        >
           <Text
             style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}
           >
@@ -153,7 +154,9 @@ const EditProfile = () => {
         <BottomSheetModal
           ref={editLinkSheetRef}
           snapPoints={snapPoints}
-          style={{}}
+          containerStyle={{
+            backgroundColor: '#343434cc',
+          }}
         >
           <Text
             style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}

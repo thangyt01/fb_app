@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
 const StyledButton = ({

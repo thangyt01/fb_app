@@ -8,6 +8,7 @@ import Login from '../screen/Login';
 import Search from '../screen/Search';
 import Profile from '../screen/Profile';
 import EditProfile from '../screen/Profile/Edit';
+import Friends from '../screen/Friends';
 
 const Stacks = () => {
   const Stack = createNativeStackNavigator();
@@ -35,7 +36,6 @@ const Stacks = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        //   initialRouteName="Profile"
         screenOptions={{
           headerShown: false,
           animation: 'slide_from_right',
@@ -44,6 +44,7 @@ const Stacks = () => {
         {isLogged ? (
           <>
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Friends" component={Friends} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="EditProfile" component={EditProfile} />
             <Stack.Screen name="Search" component={Search} />

@@ -2,13 +2,13 @@ import React from 'react';
 import { Image } from 'react-native';
 import Conan from '../../assets/conan.jpeg';
 
-const Avatar = ({ width = 36, height = 36, styles, source = Conan }) => {
+const Avatar = ({ styles, source = Conan, size = 36 }) => {
   return (
     <Image
       source={source}
       style={{
-        width,
-        height,
+        width: size,
+        height: size,
         borderRadius: 100,
         ...styles,
       }}

@@ -1,8 +1,7 @@
-import { TouchableOpacity } from '@gorhom/bottom-sheet';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-  Button,
   Image,
   Pressable,
   ScrollView,
@@ -22,11 +21,14 @@ const Profile = () => {
   const navigation = useNavigation();
 
   return (
-    <>
+    <BottomSheetModalProvider>
       <Pressable onPress={() => navigation.goBack()}>
         <Title name="Profile" />
       </Pressable>
-      <ScrollView style={{ flex: 1, top: 70 }}>
+      <ScrollView
+        style={{ flex: 1, top: 70 }}
+        showsVerticalScrollIndicator={false}
+      >
         <View>
           <Image
             source={backgroundImage}
@@ -35,8 +37,7 @@ const Profile = () => {
           />
 
           <Avatar
-            width={150}
-            height={150}
+            size={150}
             styles={{
               position: 'absolute',
               bottom: '-20%',
@@ -183,7 +184,7 @@ const Profile = () => {
           </View>
         </View>
       </ScrollView>
-    </>
+    </BottomSheetModalProvider>
   );
 };
 

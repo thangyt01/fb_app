@@ -1,5 +1,3 @@
-import { TouchableOpacity } from '@gorhom/bottom-sheet';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,8 +5,6 @@ import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Divider from './Divider';
 
 const Title = ({ name }) => {
-  const navigation = useNavigation();
-
   return (
     <SafeAreaView
       style={{
@@ -22,9 +18,7 @@ const Title = ({ name }) => {
       <View
         style={{ flexDirection: 'row', alignItems: 'center', width: '100%' }}
       >
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <AntDesignIcon name="arrowleft" size={25} />
-        </TouchableOpacity>
+        <AntDesignIcon name="arrowleft" size={25} />
         <Text
           style={{
             marginHorizontal: 12,

@@ -66,7 +66,7 @@ const CreatePost = () => {
             alignItems: 'center',
           }}
         >
-          <Avatar width={70} height={70} />
+          <Avatar size={70} />
           <View
             style={{
               marginLeft: 12,

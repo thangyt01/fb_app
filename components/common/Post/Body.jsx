@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import React from 'react';
 import Test from '../../../assets/banner.png';
 
-const Body = ({ withPicture }) => {
+const Body = () => {
   return (
     <View
       style={{
@@ -20,9 +20,7 @@ const Body = ({ withPicture }) => {
         fugiat doloremque nemo.
       </Text>
 
-      {withPicture && (
-        <Image source={Test} resizeMode="cover" style={styles.image} />
-      )}
+      <Image source={Test} resizeMode="cover" style={styles.image} />
     </View>
   );
 };

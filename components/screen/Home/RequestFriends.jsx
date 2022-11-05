@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '../../common/Avatar';
@@ -11,7 +12,7 @@ const Friend = () => {
         marginBottom: 10,
       }}
     >
-      <Avatar width={90} height={90} />
+      <Avatar size={90} />
 
       <View
         style={{
@@ -61,6 +62,8 @@ const Friend = () => {
 };
 
 const RequestFriends = () => {
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -94,24 +97,8 @@ const RequestFriends = () => {
               paddingHorizontal: 10,
               backgroundColor: '#E5E7EC',
               borderRadius: 20,
-              marginRight: 10,
             }}
-          >
-            <Text
-              style={{
-                fontWeight: 'bold',
-              }}
-            >
-              Suggestions
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              paddingVertical: 5,
-              paddingHorizontal: 10,
-              backgroundColor: '#E5E7EC',
-              borderRadius: 20,
-            }}
+            onPress={() => navigation.navigate('Friends')}
           >
             <Text
               style={{
@@ -123,7 +110,7 @@ const RequestFriends = () => {
           </TouchableOpacity>
         </View>
       </>
-      <>
+      <View>
         <View
           style={{
             flexDirection: 'row',
@@ -156,11 +143,12 @@ const RequestFriends = () => {
             See All
           </Text>
         </View>
-        <ScrollView>
-          <Friend />
-          <Friend />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {[...Array(10).keys()].map((_, index) => (
+            <Friend key={index} />
+          ))}
         </ScrollView>
-      </>
+      </View>
     </View>
   );
 };

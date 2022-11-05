@@ -6,18 +6,13 @@ import Input from '../../layout/Input';
 
 const Feed = () => {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
       <View>
         <Input />
         <Divider />
-
-        <Post withPicture={true} />
-        <Post withPicture={true} />
-        <Post withPicture={true} />
-        <Post withPicture={true} />
-        {/* <Post /> */}
-        {/* <Post withPicture={true} /> */}
-        {/* <Post /> */}
+        {[...Array(20).keys()].map((_, i) => (
+          <Post key={i} />
+        ))}
       </View>
     </ScrollView>
   );

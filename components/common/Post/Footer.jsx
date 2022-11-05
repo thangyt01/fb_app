@@ -1,12 +1,16 @@
-import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import React, { useRef } from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import Comment from '../Comment';
 import Divider from '../Divider';
 
 const Footer = () => {
+  const commentSheetModalRef = useRef();
+
   return (
     <>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => commentSheetModalRef.current.present()}>
         <View
           style={{
             flexDirection: 'row',
@@ -55,6 +59,25 @@ const Footer = () => {
         <AntDesignIcon name="message1" size={20} />
         <AntDesignIcon name="sync" size={20} />
       </View>
+
+      <BottomSheetModal
+        ref={commentSheetModalRef}
+        snapPoints={['95%']}
+        containerStyle={{
+          backgroundColor: '#343434cc',
+        }}
+      >
+        <BottomSheetScrollView
+          showsVerticalScrollIndicator={false}
+          style={{
+            padding: 10,
+          }}
+        >
+          {[...Array(10).keys()].map((_, index) => (
+            <Comment key={index} />
+          ))}
+        </BottomSheetScrollView>
+      </BottomSheetModal>
     </>
   );
 };

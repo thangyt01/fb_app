@@ -36,7 +36,10 @@ const Login = () => {
   };
 
   return (
-    <ScrollView style={tw('bg-white h-full')}>
+    <ScrollView
+      style={tw('bg-white h-full')}
+      showsVerticalScrollIndicator={false}
+    >
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#30477C"
