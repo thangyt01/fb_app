@@ -33,14 +33,6 @@ const logout = async () => {
   }
 };
 
-const refreshAccessToken = async () => {
-  try {
-    await axios.post('https://devapi.bkwatch.me/api/refresh-token');
-  } catch (error) {
-    Alert.alert(JSON.stringify(error));
-  }
-};
-
 const getProfile = async () => {
   try {
     const response = await axiosClient.get(
@@ -52,4 +44,4 @@ const getProfile = async () => {
   }
 };
 
-export { refreshAccessToken, login, register, logout, getProfile };
+export { login, register, logout, getProfile };

@@ -3,7 +3,6 @@ const AuthReducer = (state, action) => {
     case 'SIGN_IN':
       return {
         ...state,
-        accessToken: action.payload.token,
         currentUser: action.payload.currentUser,
         isLogged: true,
       };
@@ -11,7 +10,6 @@ const AuthReducer = (state, action) => {
     case 'SIGN_OUT':
       return {
         ...state,
-        accessToken: null,
         currentUser: null,
         isLogged: false,
       };
@@ -19,8 +17,17 @@ const AuthReducer = (state, action) => {
     case 'REFRESH_TOKEN':
       return {
         ...state,
-        accessToken: action.payload.refreshToken,
+        currentUser: action.payload.currentUser,
+        isLogged: true,
+        isLoading: false,
       };
+
+    case 'SET_LOADING':
+      return {
+        ...state,
+        isLoading: action.payload.isLoading,
+      };
+
     default:
       return state;
   }

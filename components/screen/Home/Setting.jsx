@@ -1,12 +1,24 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
+import { logout } from '../../../api/auth';
+import { useAuth } from '../../../context/AuthContext';
 import Avatar from '../../common/Avatar';
 import StyledButton from '../../common/Button';
 import Card from '../../common/Card';
 
 const Setting = () => {
   const navigation = useNavigation();
+  const { dispatchAuth } = useAuth();
+
+  const handleSignOut = async () => {
+    await logout();
+    AsyncStorage.removeItem('isLogged');
+    dispatchAuth({
+      type: 'SIGN_OUT',
+    });
+  };
 
   return (
     <View style={{ padding: 10 }}>
@@ -64,6 +76,7 @@ const Setting = () => {
       </View>
 
       <StyledButton
+        onPress={handleSignOut}
         title="Log Out"
         styles={{ paddingVertical: 12, marginVertical: 15 }}
       />

@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { Alert } from 'react-native';
-import { refreshAccessToken } from '../api/auth';
+
+export const refreshAccessToken = async () => {
+  try {
+    await axios.post('https://devapi.bkwatch.me/api/refresh-token');
+  } catch (error) {
+    Alert.alert(JSON.stringify(error));
+  }
+};
 
 const axiosClient = axios.create({
   baseURL: 'https://devapi.bkwatch.me/api/',

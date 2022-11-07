@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Image,
   Pressable,
@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { getProfile } from '../../../api/auth';
 import backgroundImage from '../../../assets/banner.png';
 import Avatar from '../../common/Avatar';
 import StyledButton from '../../common/Button';
@@ -18,6 +19,14 @@ import DetailItem from './Edit/DetailItem';
 
 const Profile = () => {
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const result = await getProfile();
+      console.log(result);
+    };
+    fetchProfile();
+  }, []);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import {
   Button,
@@ -9,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { useTailwind } from 'tailwind-rn/dist';
+import { login } from '../../api/auth';
 import facebookLogo from '../../assets/banner.png';
 import { useAuth } from '../../context/AuthContext';
 
@@ -21,13 +23,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      // const result = await login({ username, password });
-      // await AsyncStorage.setItem('isLogged', JSON.stringify(true));
+      const result = await login({ username, password });
+      await AsyncStorage.setItem('isLogged', JSON.stringify(true));
       dispatchAuth({
         type: 'SIGN_IN',
         payload: {
-          token: 'token',
-          currentUser: 'user',
+          token: result.data.access_token,
+          currentUser: result.data.profile,
         },
       });
     } catch (error) {
