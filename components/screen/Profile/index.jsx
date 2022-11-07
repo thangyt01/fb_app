@@ -1,4 +1,3 @@
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
@@ -21,7 +20,7 @@ const Profile = () => {
   const navigation = useNavigation();
 
   return (
-    <BottomSheetModalProvider>
+    <>
       <Pressable onPress={() => navigation.goBack()}>
         <Title name="Profile" />
       </Pressable>
@@ -184,7 +183,7 @@ const Profile = () => {
           </View>
         </View>
       </ScrollView>
-    </BottomSheetModalProvider>
+    </>
   );
 };
 

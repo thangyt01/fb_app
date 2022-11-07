@@ -1,16 +1,18 @@
-import { View, Text, TouchableOpacity, Pressable } from 'react-native';
-import React, { useRef, useState } from 'react';
-import Title from '../common/Title';
-import { ScrollView } from 'react-native';
-import Search from '../common/Search';
-import Avatar from '../common/Avatar';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
+import React, { useRef, useState } from 'react';
 import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
+  Pressable,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import Avatar from '../common/Avatar';
 import Divider from '../common/Divider';
+import Search from '../common/Search';
+import Title from '../common/Title';
 
 const Friends = () => {
   const [user, setUser] = useState(null);
@@ -25,7 +27,7 @@ const Friends = () => {
   };
 
   return (
-    <BottomSheetModalProvider>
+    <>
       <View style={{ flex: 1, backgroundColor: 'white', height: '100%' }}>
         <Pressable onPress={() => navigation.goBack()}>
           <Title name="Friends" />
@@ -114,7 +116,7 @@ const Friends = () => {
           </View>
         </View>
       </BottomSheetModal>
-    </BottomSheetModalProvider>
+    </>
   );
 };
 

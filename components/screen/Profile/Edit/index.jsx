@@ -1,7 +1,4 @@
-import {
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useNavigation } from '@react-navigation/native';
 import React, { useRef } from 'react';
 import {
@@ -12,13 +9,13 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import backgroundImage from '../../../../assets/banner.png';
 import Avatar from '../../../common/Avatar';
+import StyledButton from '../../../common/Button';
 import Title from '../../../common/Title';
 import DataRow from './DataRow';
 import DetailItem from './DetailItem';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-import StyledButton from '../../../common/Button';
 
 const EditProfile = () => {
   const navigation = useNavigation();
@@ -28,7 +25,7 @@ const EditProfile = () => {
   const snapPoints = ['50%'];
 
   return (
-    <BottomSheetModalProvider>
+    <>
       <View style={{ backgroundColor: 'white' }}>
         <Pressable onPress={() => navigation.goBack()}>
           <Title name="Edit profile" />
@@ -208,7 +205,7 @@ const EditProfile = () => {
           </View>
         </BottomSheetModal>
       </View>
-    </BottomSheetModalProvider>
+    </>
   );
 };
 

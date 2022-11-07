@@ -5,6 +5,7 @@ import { TailwindProvider } from 'tailwind-rn';
 import MyStacks from './components/navigation/Stacks';
 import AuthProvider from './context/AuthContext';
 import utilities from './tailwind.json';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 export default function App() {
   const client = new QueryClient();
@@ -14,7 +15,9 @@ export default function App() {
       <QueryClientProvider client={client}>
         <TailwindProvider utilities={utilities}>
           <AuthProvider>
-            <MyStacks />
+            <BottomSheetModalProvider>
+              <MyStacks />
+            </BottomSheetModalProvider>
           </AuthProvider>
         </TailwindProvider>
       </QueryClientProvider>

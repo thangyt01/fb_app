@@ -8,6 +8,7 @@ const Comment = () => {
       style={{
         flexDirection: 'row',
         marginVertical: 10,
+        justifyContent: 'space-between',
       }}
     >
       <Avatar size={40} />
