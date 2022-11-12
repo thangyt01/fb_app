@@ -28,7 +28,6 @@ const Login = () => {
       dispatchAuth({
         type: 'SIGN_IN',
         payload: {
-          token: result.data.access_token,
           currentUser: result.data.profile,
         },
       });

@@ -95,6 +95,7 @@ const Footer = () => {
             </TouchableOpacity>
           </View>
         </View>
+
         <BottomSheetScrollView
           showsVerticalScrollIndicator={false}
           style={{

@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { logout } from '../../../api/auth';
+import { getProfile, logout } from '../../../api/auth';
 import { useAuth } from '../../../context/AuthContext';
 import Avatar from '../../common/Avatar';
 import StyledButton from '../../common/Button';
@@ -12,6 +13,12 @@ const Setting = () => {
   const navigation = useNavigation();
   const { dispatchAuth } = useAuth();
 
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ['my-profile'],
+    queryFn: () => getProfile(),
+    staleTime: Infinity,
+  });
+
   const handleSignOut = async () => {
     await logout();
     AsyncStorage.removeItem('isLogged');
@@ -19,6 +26,10 @@ const Setting = () => {
       type: 'SIGN_OUT',
     });
   };
+
+  if (isLoadingProfile) {
+    return <Text>Loading</Text>;
+  }
 
   return (
     <View style={{ padding: 10 }}>
@@ -46,7 +57,7 @@ const Setting = () => {
           style={{ marginHorizontal: 5 }}
           onPress={() => navigation.navigate('Profile')}
         >
-          <Text style={{ fontWeight: 'bold' }}>Conan</Text>
+          <Text style={{ fontWeight: 'bold' }}>{profile.data.firstname}</Text>
           <Text>See your profile</Text>
         </Pressable>
       </View>

@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text, View } from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 
 const Card = ({ name, icon }) => {

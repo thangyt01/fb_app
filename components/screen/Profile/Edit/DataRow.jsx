@@ -23,7 +23,7 @@ const Header = ({ name, children, onEdit, styles, onPress }) => {
         <Pressable onPress={onPress}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 15,
               color: '#2270DC',
             }}
           >

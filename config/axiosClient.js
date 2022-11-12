@@ -11,7 +11,7 @@ export const refreshAccessToken = async () => {
 
 const axiosClient = axios.create({
   baseURL: 'https://devapi.bkwatch.me/api/',
-  timeout: 50000,
+  timeout: 5000,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',

@@ -5,16 +5,14 @@ import BottomTab from '../../navigation/BottomTabNavigator';
 
 const Home = () => {
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <Header />
-        <BottomTab />
-      </View>
-    </>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <Header />
+      <BottomTab />
+    </View>
   );
 };
 

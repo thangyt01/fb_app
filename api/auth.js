@@ -35,13 +35,19 @@ const logout = async () => {
 
 const getProfile = async () => {
   try {
-    const response = await axiosClient.get(
-      'https://devapi.bkwatch.me/api/profile',
-    );
+    const response = await axiosClient.get('profile');
     return response.data;
   } catch (error) {
     Alert.alert(JSON.stringify(error));
   }
 };
 
-export { login, register, logout, getProfile };
+const editProfile = async body => {
+  try {
+    await axiosClient.post('profile', body);
+  } catch (error) {
+    Alert.alert(JSON.stringify(error));
+  }
+};
+
+export { login, register, logout, getProfile, editProfile };

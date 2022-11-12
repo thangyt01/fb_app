@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import {
   Image,
   Pressable,
@@ -20,13 +21,14 @@ import DetailItem from './Edit/DetailItem';
 const Profile = () => {
   const navigation = useNavigation();
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const result = await getProfile();
-      console.log(result);
-    };
-    fetchProfile();
-  }, []);
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ['my-profile'],
+    queryFn: () => getProfile(),
+  });
+
+  if (isLoadingProfile) {
+    return <Text>Loading</Text>;
+  }
 
   return (
     <>
@@ -68,14 +70,15 @@ const Profile = () => {
               marginBottom: 15,
             }}
           >
-            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Conan</Text>
-            <Pressable onPress={() => navigation.navigate('EditProfile')}>
-              <StyledButton
-                title="Edit profile"
-                icon="edit"
-                styles={{ paddingVertical: 10 }}
-              />
-            </Pressable>
+            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>
+              {profile.data.firstname}
+            </Text>
+            <StyledButton
+              title="Edit profile"
+              icon="edit"
+              styles={{ paddingVertical: 10 }}
+              onPress={() => navigation.navigate('EditProfile')}
+            />
             {/* <StyledButton title="Add friend" icon="adduser" /> */}
             {/* <StyledButton
               title="Friend"
@@ -112,7 +115,7 @@ const Profile = () => {
               marginVertical: 10,
             }}
           >
-            <DetailItem content="Joined at January 15th" icon="clockcircle" />
+            <DetailItem content={profile.data.created_at} icon="clockcircle" />
             <DetailItem icon="home" content="Lives in Hanoi" />
             <Pressable onPress={() => navigation.navigate('EditProfile')}>
               <DetailItem content="See your About info" icon="ellipsis1" />
