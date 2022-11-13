@@ -28,7 +28,7 @@ const Header = () => {
           }}
         >
           <View style={styles.icon}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
               <MaterialIcon name="add" size={28} color="black" />
             </TouchableOpacity>
           </View>

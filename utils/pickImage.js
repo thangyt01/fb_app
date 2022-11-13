@@ -3,7 +3,7 @@ import * as ImagePicker from 'expo-image-picker';
 const pickImage = async () => {
   try {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
     });
     return result;

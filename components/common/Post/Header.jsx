@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import Conan from '../../../assets/conan.jpeg';
+import { Text, TouchableOpacity, View } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import Conan from '../../../assets/conan.jpeg';
 import Avatar from '../Avatar';
 
 const Header = () => {
