@@ -1,11 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
-import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Conan from '../../assets/conan.jpeg';
 import Avatar from '../common/Avatar';
 
-const Input = () => {
+const Input = ({ styles }) => {
   const navigation = useNavigation();
 
   return (
@@ -15,6 +14,7 @@ const Input = () => {
         paddingHorizontal: 10,
         paddingTop: 10,
         paddingBottom: 10,
+        ...styles,
       }}
     >
       <View
@@ -47,9 +47,6 @@ const Input = () => {
             editable={false}
             placeholder="What's on your mind?"
           />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <AntDesignIcon name="picture" color="#4CAF50" size={32} />
         </TouchableOpacity>
       </View>
 

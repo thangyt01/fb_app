@@ -8,6 +8,7 @@ import { useAuth } from '../../../context/AuthContext';
 import Avatar from '../../common/Avatar';
 import StyledButton from '../../common/Button';
 import Card from '../../common/Card';
+import Spinner from '../Spinner';
 
 const Setting = () => {
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ const Setting = () => {
   };
 
   if (isLoadingProfile) {
-    return <Text>Loading</Text>;
+    return <Spinner />;
   }
 
   return (
@@ -73,16 +74,28 @@ const Setting = () => {
           All shortcuts
         </Text>
         <View style={{ flexDirection: 'row', marginVertical: 5 }}>
-          <Card name="Feed" icon="table" />
-          <Card name="Friends" icon="user-friends" />
+          <Card
+            name="Feed"
+            icon="table"
+            onPress={() => navigation.navigate('feed')}
+          />
+          <Card
+            name="Friends"
+            icon="user-friends"
+            onPress={() => navigation.navigate('request-friends')}
+          />
         </View>
         <View style={{ flexDirection: 'row', marginVertical: 5, with: '100%' }}>
-          <Card name="Groups" icon="comments" />
-          <Card name="Marketplace" icon="shopping-bag" />
-        </View>
-        <View style={{ flexDirection: 'row', marginVertical: 5 }}>
-          <Card name="Saved" icon="clone" />
-          <Card name="Memories" icon="calendar-alt" />
+          <Card
+            name="Watch"
+            icon="photo-video"
+            onPress={() => navigation.navigate('video')}
+          />
+          <Card
+            name="Profile"
+            icon="user-cog"
+            onPress={() => navigation.navigate('Profile')}
+          />
         </View>
       </View>
 

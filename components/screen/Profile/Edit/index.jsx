@@ -7,6 +7,7 @@ import backgroundImage from '../../../../assets/banner.png';
 import BottomSheetEditProfile from '../../../bottomSheet/BottomSheetEditProfile';
 import Avatar from '../../../common/Avatar';
 import Title from '../../../common/Title';
+import Spinner from '../../Spinner';
 import DataRow from './DataRow';
 import DetailItem from './DetailItem';
 
@@ -20,7 +21,7 @@ const EditProfile = () => {
   });
 
   if (isLoadingEditProfile) {
-    return <Text>Loading</Text>;
+    return <Spinner />;
   }
 
   return (

@@ -16,6 +16,8 @@ import StyledButton from '../../common/Button';
 import Divider from '../../common/Divider';
 import Post from '../../common/Post';
 import Title from '../../common/Title';
+import Input from '../../layout/Input';
+import Spinner from '../Spinner';
 import DetailItem from './Edit/DetailItem';
 
 const Profile = () => {
@@ -27,11 +29,15 @@ const Profile = () => {
   });
 
   if (isLoadingProfile) {
-    return <Text>Loading</Text>;
+    return <Spinner />;
   }
 
   return (
-    <>
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
       <Pressable onPress={() => navigation.goBack()}>
         <Title name="Profile" />
       </Pressable>
@@ -122,12 +128,7 @@ const Profile = () => {
             </Pressable>
           </View>
 
-          <Divider
-            height={12}
-            styles={{
-              marginHorizontal: -10,
-            }}
-          />
+          <Divider height={12} styles={styles.marginHorizontal} />
 
           <View
             style={{
@@ -185,17 +186,21 @@ const Profile = () => {
             </View>
           </View>
 
-          <Divider height={12} styles={{ marginHorizontal: -10 }} />
+          <Divider height={12} styles={styles.marginHorizontal} />
 
-          <View style={{ marginHorizontal: -10 }}>
+          <Input styles={styles.marginHorizontal} />
+
+          <Divider height={12} styles={styles.marginHorizontal} />
+
+          <View style={styles.marginHorizontal}>
             <Post />
-            <Post withPicture />
+            <Post />
             <Post />
             <Post />
           </View>
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 };
 
@@ -203,6 +208,9 @@ const styles = StyleSheet.create({
   backgroundImage: {
     height: 200,
     width: '100%',
+  },
+  marginHorizontal: {
+    marginHorizontal: -10,
   },
 });
 
