@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
