@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
-import { editProfile } from '../../api/auth';
+import { editProfile } from '../../apis/auth.api';
 import StyledButton from '../layouts/Button';
 
 const MyRow = ({ title, icon, value, field, setInputForm, inputForm }) => {

@@ -32,7 +32,7 @@ const Input = ({ styles }) => {
             paddingVertical: 5,
             paddingHorizontal: 7,
           }}
-          onPress={() => navigation.navigate('CreatePost')}
+          onPress={() => navigation.navigate('createPost')}
         >
           <TextInput
             style={{

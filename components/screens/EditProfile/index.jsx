@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
-import { getProfile } from '../../../api/auth';
+import { getProfile } from '../../../apis/auth.api';
 import backgroundImage from '../../../assets/banner.png';
 import BottomSheetEditProfile from '../../bottomSheets/BottomSheetEditProfile';
 import Avatar from '../../layouts/Avatar';

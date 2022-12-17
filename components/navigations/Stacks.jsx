@@ -2,8 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
-import { getProfile } from '../../api/auth';
-import { refreshAccessToken } from '../../config/axiosClient';
+import { getProfile } from '../../apis/auth.api';
 import { useAuth } from '../../context/AuthContext';
 import CreatePost from '../screens/CreatePost';
 import Friends from '../screens/Friends';
@@ -65,13 +64,13 @@ const Stacks = () => {
           <Stack.Screen name="Loading" component={Spinner} />
         ) : isLogged ? (
           <React.Fragment>
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Friends" component={Friends} />
-            <Stack.Screen name="Profile" component={Profile} />
-            <Stack.Screen name="EditProfile" component={EditProfile} />
-            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="friends" component={Friends} />
+            <Stack.Screen name="profile" component={Profile} />
+            <Stack.Screen name="editProfile" component={EditProfile} />
+            <Stack.Screen name="search" component={Search} />
             <Stack.Screen
-              name="CreatePost"
+              name="createPost"
               component={CreatePost}
               options={{
                 animation: 'slide_from_bottom',

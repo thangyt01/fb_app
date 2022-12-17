@@ -1,9 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  ActivityIndicator,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Avatar from '../../layouts/Avatar';
+import Spinner from '../Spinner';
 
-const Friend = () => {
+const Friend = ({ id, name = 'Messi', avatarUrl, onDelete, onConfirm }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  if (isLoading) {
+    return <ActivityIndicator size="large" color="#2374E1" />;
+  }
+
   return (
     <View
       style={{
@@ -26,7 +38,7 @@ const Friend = () => {
             marginBottom: 10,
           }}
         >
-          Your name
+          {name}
         </Text>
         <View
           style={{
@@ -42,7 +54,9 @@ const Friend = () => {
               marginRight: 10,
             }}
           >
-            <Text style={{ color: 'white' }}>Confirm</Text>
+            <Text style={{ color: 'white' }} onPress={() => onConfirm(id)}>
+              Confirm
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -53,7 +67,14 @@ const Friend = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={{ color: 'black' }}>Delete</Text>
+            <Text
+              style={{ color: 'black' }}
+              onPress={() => {
+                onDelete(id);
+              }}
+            >
+              Delete
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -62,7 +83,20 @@ const Friend = () => {
 };
 
 const RequestFriends = () => {
+  const data = [...Array(10).keys()];
   const navigation = useNavigation();
+
+  const [requestFriends, setRequestFriends] = useState(data);
+
+  const handleConfirm = id => {
+    let newData = requestFriends.filter((_, index) => index !== id);
+    setRequestFriends(newData);
+  };
+
+  const handleDelete = id => {
+    let newData = requestFriends.filter((_, index) => index !== id);
+    setRequestFriends(newData);
+  };
 
   return (
     <View
@@ -98,7 +132,7 @@ const RequestFriends = () => {
               backgroundColor: '#E5E7EC',
               borderRadius: 20,
             }}
-            onPress={() => navigation.navigate('Friends')}
+            onPress={() => navigation.navigate('friends')}
           >
             <Text
               style={{
@@ -144,8 +178,13 @@ const RequestFriends = () => {
           </Text>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          {[...Array(10).keys()].map((_, index) => (
-            <Friend key={index} />
+          {requestFriends.map((_, index) => (
+            <Friend
+              key={index}
+              onDelete={handleDelete}
+              onConfirm={handleConfirm}
+              id={index}
+            />
           ))}
         </ScrollView>
       </View>

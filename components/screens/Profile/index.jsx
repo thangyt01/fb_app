@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { getProfile } from '../../../api/auth';
+import { getProfile } from '../../../apis/auth.api';
 import backgroundImage from '../../../assets/banner.png';
 import Avatar from '../../layouts/Avatar';
 import StyledButton from '../../layouts/Button';
@@ -132,7 +132,7 @@ const Profile = () => {
               icon="clockcircle"
             />
             <DetailItem icon="home" content="Lives in Hanoi" />
-            <Pressable onPress={() => navigation.navigate('EditProfile')}>
+            <Pressable onPress={() => navigation.navigate('editProfile')}>
               <DetailItem content="See your About info" icon="ellipsis1" />
             </Pressable>
           </View>

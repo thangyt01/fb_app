@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { getProfile, logout } from '../../../api/auth';
+import { getProfile, logout } from '../../../apis/auth.api';
 import { useAuth } from '../../../context/AuthContext';
 import Avatar from '../../layouts/Avatar';
 import StyledButton from '../../layouts/Button';
@@ -62,7 +62,7 @@ const Setting = () => {
 
         <Pressable
           style={{ marginHorizontal: 5 }}
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate('profile')}
         >
           <Text style={{ fontWeight: 'bold' }}>{profile?.data.firstname}</Text>
           <Text>See your profile</Text>
@@ -100,7 +100,7 @@ const Setting = () => {
           <Card
             name="Profile"
             icon="user-cog"
-            onPress={() => navigation.navigate('Profile')}
+            onPress={() => navigation.navigate('profile')}
           />
         </View>
       </View>

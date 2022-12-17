@@ -1,6 +1,6 @@
 import axios from 'axios';
-import axiosClient from '../config/axiosClient';
 import { Alert } from 'react-native';
+import http from '../utils/http';
 
 const login = async ({ username, password }) => {
   try {
@@ -35,7 +35,7 @@ const logout = async () => {
 
 const getProfile = async () => {
   try {
-    const response = await axiosClient.get('profile');
+    const response = await http.get('profile');
     return response.data;
   } catch (error) {
     Alert.alert(JSON.stringify(error));
@@ -44,7 +44,7 @@ const getProfile = async () => {
 
 const editProfile = async body => {
   try {
-    await axiosClient.post('profile', body);
+    await http.post('profile', body);
   } catch (error) {
     Alert.alert(JSON.stringify(error));
   }

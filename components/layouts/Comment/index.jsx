@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import Avatar from '../Avatar';
 
@@ -7,6 +7,7 @@ const Comment = ({
   avatarUrl,
   createdAt = '12m',
   content = 'reply comment',
+  onReply,
 }) => {
   const [liked, setLiked] = useState(false);
 
@@ -54,7 +55,6 @@ const Comment = ({
           style={{
             flexDirection: 'row',
             width: '40%',
-            // flex: 1,
             justifyContent: 'space-between',
           }}
         >
@@ -82,6 +82,10 @@ const Comment = ({
           <Text
             style={{
               fontWeight: 'bold',
+            }}
+            onPress={() => {
+              console.log('1');
+              onReply('@ChuHien ');
             }}
           >
             Reply

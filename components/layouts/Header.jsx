@@ -28,7 +28,7 @@ const Header = () => {
           }}
         >
           <View style={styles.icon}>
-            <TouchableOpacity onPress={() => navigation.navigate('CreatePost')}>
+            <TouchableOpacity onPress={() => navigation.navigate('createPost')}>
               <MaterialIcon name="add" size={28} color="black" />
             </TouchableOpacity>
           </View>
@@ -44,7 +44,7 @@ const Header = () => {
           </View>
 
           <View style={styles.icon}>
-            <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+            <TouchableOpacity onPress={() => navigation.navigate('search')}>
               <Icon name="ios-search" size={28} color="black" />
             </TouchableOpacity>
           </View>

@@ -71,9 +71,10 @@ const CreatePost = () => {
               style={{
                 marginLeft: 15,
                 fontSize: 20,
+                fontWeight: 'bold',
               }}
             >
-              Create post
+              POST
             </Text>
           </View>
 
@@ -166,6 +167,7 @@ const CreatePost = () => {
                 onChangeText={text => setContent(text)}
                 multiline
                 maxLength={150}
+                autoFocus
               />
             </View>
             <View style={{ marginTop: 20 }}>
