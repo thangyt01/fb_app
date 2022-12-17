@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { TailwindProvider } from 'tailwind-rn';
-import MyStacks from './components/navigation/Stacks';
+import MyStacks from './components/navigations/Stacks';
 import AuthProvider from './context/AuthContext';
 import utilities from './tailwind.json';
 
