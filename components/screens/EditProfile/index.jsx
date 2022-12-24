@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
+import dayjs from 'dayjs';
 import React, { useRef } from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { getProfile } from '../../../apis/auth.api';
@@ -15,23 +16,14 @@ const EditProfile = () => {
   const navigation = useNavigation();
   const editProfileRef = useRef(null);
 
-  //   const { data: profile, isLoading: isLoadingEditProfile } = useQuery({
-  //     queryKey: ['my-profile'],
-  //     queryFn: () => getProfile(),
-  //   });
+  const { data: profile, isLoading: isLoadingEditProfile } = useQuery({
+    queryKey: ['myProfile'],
+    queryFn: () => getProfile(),
+  });
 
-  //   if (isLoadingEditProfile) {
-  //     return <Spinner />;
-  //   }
-
-  const profile = {
-    data: {
-      firstname: 'Hien',
-      created_at: '15-1-2001',
-      address: 'Hanoi',
-      company: 'Viettel',
-    },
-  };
+  if (isLoadingEditProfile) {
+    return <Spinner />;
+  }
 
   return (
     <View style={{ backgroundColor: 'white' }}>
@@ -53,7 +45,7 @@ const EditProfile = () => {
             editProfileRef.current.present();
           }}
         >
-          <Text style={{ fontSize: 20 }}>{profile.data.firstname}</Text>
+          <Text style={{ fontSize: 20 }}>{profile.firstname}</Text>
         </DataRow>
 
         <DataRow name="Profile">
@@ -85,8 +77,11 @@ const EditProfile = () => {
               overflow: 'scroll',
             }}
           >
-            <DetailItem icon="clockcircle" content={profile.data.created_at} />
-            <DetailItem icon="home" content="Lives in Hanoi" />
+            <DetailItem
+              icon="clockcircle"
+              content={dayjs(profile.created_at).format('DD MMMM, YYYY')}
+            />
+            <DetailItem icon="home" content={profile.address} />
             <DetailItem icon="folderopen" content="Work at HUST" />
           </View>
         </DataRow>
@@ -99,8 +94,8 @@ const EditProfile = () => {
               overflow: 'scroll',
             }}
           >
-            <DetailItem icon="twitter" content="me.twitter" />
-            <DetailItem icon="github" content="github.com" />
+            <DetailItem icon="twitter" content={profile.link_twitter} />
+            <DetailItem icon="github" content={profile.link_github} />
           </View>
         </DataRow>
       </ScrollView>
@@ -113,27 +108,27 @@ const EditProfile = () => {
           {
             icon: 'home',
             field: 'name',
-            value: profile.data.firstname,
+            value: profile.firstname,
           },
           {
             icon: 'home',
             field: 'address',
-            value: profile.data.address, /// them address
+            value: profile.address,
           },
           {
             icon: 'laptop',
             field: 'company',
-            value: profile.data.company, // them company
+            value: 'HUST', // them company
           },
           {
             icon: 'twitter',
             field: 'twitter',
-            value: 'my-link', /// them link
+            value: profile.link_twitter, /// them link
           },
           {
             icon: 'github',
             field: 'github',
-            value: 'my-link', // them link
+            value: profile.link_github, // them link
           },
         ]}
       ></BottomSheetEditProfile>

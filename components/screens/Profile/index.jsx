@@ -19,24 +19,19 @@ import Title from '../../layouts/Title';
 import Input from '../../layouts/Input';
 import Spinner from '../Spinner';
 import DetailItem from '../EditProfile/DetailItem';
+import dayjs from 'dayjs';
 
 const Profile = () => {
   const navigation = useNavigation();
 
-  //   const { data: profile, isLoading: isLoadingProfile } = useQuery({
-  //     queryKey: ['my-profile'],
-  //     queryFn: () => getProfile(),
-  //   });
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ['myProfile'],
+    queryFn: () => getProfile(),
+  });
 
-  //   if (isLoadingProfile) {
-  //     return <Spinner />;
-  //   }
-
-  const profile = {
-    data: {
-      firstname: 'Chu Hien',
-    },
-  };
+  if (isLoadingProfile) {
+    return <Spinner />;
+  }
 
   return (
     <View
@@ -83,13 +78,13 @@ const Profile = () => {
             }}
           >
             <Text style={{ fontSize: 30, fontWeight: 'bold' }}>
-              {profile?.data.firstname || 'Chu Hien'}
+              {profile?.firstname}
             </Text>
             <StyledButton
               title="Edit profile"
               icon="edit"
               styles={{ paddingVertical: 10 }}
-              onPress={() => navigation.navigate('EditProfile')}
+              onPress={() => navigation.navigate('editProfile')}
             />
             {/* <StyledButton title="Add friend" icon="adduser" /> */}
             {/* <StyledButton
@@ -128,10 +123,10 @@ const Profile = () => {
             }}
           >
             <DetailItem
-              content={profile?.data.created_at || '15/12/2022'}
+              content={dayjs(profile?.created_at).format('DD MMMM, YYYY')}
               icon="clockcircle"
             />
-            <DetailItem icon="home" content="Lives in Hanoi" />
+            <DetailItem icon="home" content={profile.address} />
             <Pressable onPress={() => navigation.navigate('editProfile')}>
               <DetailItem content="See your About info" icon="ellipsis1" />
             </Pressable>

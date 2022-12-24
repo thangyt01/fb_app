@@ -14,17 +14,10 @@ const Setting = () => {
   const navigation = useNavigation();
   const { dispatchAuth } = useAuth();
 
-  //   const { data: profile, isLoading: isLoadingProfile } = useQuery({
-  //     queryKey: ['my-profile'],
-  //     queryFn: () => getProfile(),
-  //     staleTime: Infinity,
-  //   });
-
-  const profile = {
-    data: {
-      firstname: 'Chu Hien',
-    },
-  };
+  const { data: profile, isLoading: isLoadingProfile } = useQuery({
+    queryKey: ['myProfile'],
+    queryFn: () => getProfile(),
+  });
 
   const handleSignOut = async () => {
     await logout();
@@ -34,9 +27,9 @@ const Setting = () => {
     });
   };
 
-  //   if (isLoadingProfile) {
-  //     return <Spinner />;
-  //   }
+  if (isLoadingProfile) {
+    return <Spinner />;
+  }
 
   return (
     <View style={{ padding: 10 }}>
@@ -64,7 +57,7 @@ const Setting = () => {
           style={{ marginHorizontal: 5 }}
           onPress={() => navigation.navigate('profile')}
         >
-          <Text style={{ fontWeight: 'bold' }}>{profile?.data.firstname}</Text>
+          <Text style={{ fontWeight: 'bold' }}>{profile?.firstname}</Text>
           <Text>See your profile</Text>
         </Pressable>
       </View>

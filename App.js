@@ -9,7 +9,13 @@ import RegisterProvider from './context/RegisterContext';
 import utilities from './tailwind.json';
 
 export default function App() {
-  const client = new QueryClient();
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 10000,
+      },
+    },
+  });
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
