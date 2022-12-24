@@ -11,25 +11,32 @@ const login = async ({ username, password }) => {
 
     return response.data;
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error);
   }
 };
 
-const register = async () => {
+const register = async body => {
   try {
-    /**
-     * code
-     */
+    const { lastname, ...data } = body;
+    const response = await http.post('register', {
+      ...body,
+      birthday: '2001-01-01',
+      username: lastname,
+      address: 'Vietnam',
+      link_github: 'https://github.com/',
+      link_twitter: 'https://twitter.com/',
+    });
+    return response;
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error);
   }
 };
 
 const logout = async () => {
   try {
-    await axios.post('https://devapi.bkwatch.me/api/logout');
+    await http.post('https://devapi.bkwatch.me/api/logout');
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error);
   }
 };
 
@@ -38,7 +45,7 @@ const getProfile = async () => {
     const response = await http.get('profile');
     return response.data;
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error);
   }
 };
 
@@ -46,7 +53,7 @@ const editProfile = async body => {
   try {
     await http.post('profile', body);
   } catch (error) {
-    Alert.alert(JSON.stringify(error));
+    console.log(error);
   }
 };
 

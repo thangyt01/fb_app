@@ -12,45 +12,38 @@ import Login from '../screens/Login';
 import Profile from '../screens/Profile';
 import EditProfile from '../screens/EditProfile';
 import Search from '../screens/Search';
+import Register from '../screens/Register';
 
 const Stacks = () => {
   const Stack = createNativeStackNavigator();
 
-  const isLogged = true;
-  const isLoading = false;
+  const {
+    authStateContext: { isLogged },
+    dispatchAuth,
+  } = useAuth();
 
-  //   const {
-  //     authStateContext: { isLogged, isLoading },
-  //     dispatchAuth,
-  //   } = useAuth();
+  useEffect(() => {
+    const refreshApp = async () => {
+      const result = await getProfile();
+      dispatchAuth({
+        type: 'REFRESH_TOKEN',
+        payload: {
+          currentUser: result?.data,
+        },
+      });
+    };
 
-  //   useEffect(() => {
-  //     const refreshApp = async () => {
-  //       await refreshAccessToken();
-  //       const result = await getProfile();
-  //       dispatchAuth({
-  //         type: 'REFRESH_TOKEN',
-  //         payload: {
-  //           currentUser: result.data,
-  //         },
-  //       });
-  //       dispatchAuth({
-  //         type: 'SET_LOADING',
-  //         payload: { isLoading: false },
-  //       });
-  //     };
-
-  //     AsyncStorage.getItem('isLogged').then(value => {
-  //       if (value === 'true') {
-  //         refreshApp();
-  //       } else {
-  //         dispatchAuth({
-  //           type: 'SET_LOADING',
-  //           payload: { isLoading: false },
-  //         });
-  //       }
-  //     });
-  //   }, []);
+    AsyncStorage.getItem('isLogged').then(value => {
+      if (value === 'true') {
+        refreshApp();
+      } else {
+        dispatchAuth({
+          type: 'SET_LOADING',
+          payload: { isLoading: false },
+        });
+      }
+    });
+  }, []);
 
   return (
     <NavigationContainer>
@@ -60,9 +53,7 @@ const Stacks = () => {
           animation: 'slide_from_right',
         }}
       >
-        {isLoading ? (
-          <Stack.Screen name="Loading" component={Spinner} />
-        ) : isLogged ? (
+        {isLogged ? (
           <React.Fragment>
             <Stack.Screen name="home" component={Home} />
             <Stack.Screen name="friends" component={Friends} />
@@ -79,7 +70,8 @@ const Stacks = () => {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="register" component={Register} />
           </React.Fragment>
         )}
       </Stack.Navigator>

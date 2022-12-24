@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
   Button,
@@ -17,6 +18,8 @@ import { useAuth } from '../../context/AuthContext';
 const Login = () => {
   const tw = useTailwind();
   const { dispatchAuth } = useAuth();
+
+  const navigation = useNavigation();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -41,12 +44,6 @@ const Login = () => {
       style={tw('bg-white h-full')}
       showsVerticalScrollIndicator={false}
     >
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="#30477C"
-        translucent={true}
-      />
-
       <View style={tw('flex-1')}>
         <View>
           <Image source={facebookLogo} style={tw('w-full h-60')} />
@@ -81,7 +78,11 @@ const Login = () => {
           <View style={tw('flex-grow border-b border-b-[#ddd]')} />
         </View>
         <View style={tw('mt-5 mx-6 justify-center items-center')}>
-          <Button title="Create account" color="#07A007" />
+          <Button
+            title="Create account"
+            color="#07A007"
+            onPress={() => navigation.navigate('register')}
+          />
         </View>
       </View>
     </ScrollView>

@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { TailwindProvider } from 'tailwind-rn';
 import MyStacks from './components/navigations/Stacks';
 import AuthProvider from './context/AuthContext';
+import RegisterProvider from './context/RegisterContext';
 import utilities from './tailwind.json';
 
 export default function App() {
@@ -15,9 +16,11 @@ export default function App() {
       <QueryClientProvider client={client}>
         <TailwindProvider utilities={utilities}>
           <AuthProvider>
-            <BottomSheetModalProvider>
-              <MyStacks />
-            </BottomSheetModalProvider>
+            <RegisterProvider>
+              <BottomSheetModalProvider>
+                <MyStacks />
+              </BottomSheetModalProvider>
+            </RegisterProvider>
           </AuthProvider>
         </TailwindProvider>
       </QueryClientProvider>

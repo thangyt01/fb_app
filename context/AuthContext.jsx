@@ -18,13 +18,8 @@ const AuthProvider = ({ children }) => {
     defaultValue,
   );
 
-  const authContextData = {
-    authStateContext,
-    dispatchAuth,
-  };
-
   return (
-    <AuthContext.Provider value={authContextData}>
+    <AuthContext.Provider value={{ authStateContext, dispatchAuth }}>
       {children}
     </AuthContext.Provider>
   );
