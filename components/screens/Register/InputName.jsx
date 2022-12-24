@@ -22,6 +22,7 @@ const InputName = () => {
         flex: 1,
         padding: 10,
         justifyContent: 'space-between',
+        backgroundColor: 'white',
       }}
     >
       <View>

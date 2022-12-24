@@ -29,7 +29,14 @@ const InputBirthday = () => {
   };
 
   return (
-    <View style={{ flex: 1, padding: 10, justifyContent: 'space-between' }}>
+    <View
+      style={{
+        flex: 1,
+        padding: 10,
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+      }}
+    >
       <Pressable
         onPress={() => {
           showDatePicker(true);

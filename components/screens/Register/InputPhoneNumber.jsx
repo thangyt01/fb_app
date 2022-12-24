@@ -11,7 +11,14 @@ const InputPhoneNumber = () => {
   const [phone, setPhone] = useState(registerState.phone);
 
   return (
-    <View style={{ flex: 1, padding: 10, justifyContent: 'space-between' }}>
+    <View
+      style={{
+        flex: 1,
+        padding: 10,
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+      }}
+    >
       <StyledTextInput
         paddingHorizontal={12}
         marginVertical={5}

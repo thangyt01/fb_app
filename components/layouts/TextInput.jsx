@@ -26,6 +26,8 @@ const StyledTextInput = ({
         fontSize: fontSize,
         marginVertical: marginVertical,
         borderRadius: 10,
+        borderColor: '#ccc',
+        borderWidth: 1,
         ...props,
       }}
       onChangeText={onChange}

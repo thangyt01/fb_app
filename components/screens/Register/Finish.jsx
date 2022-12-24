@@ -39,6 +39,7 @@ const Finish = () => {
         flex: 1,
         justifyContent: 'space-between',
         padding: 10,
+        backgroundColor: 'white',
       }}
     >
       <View>

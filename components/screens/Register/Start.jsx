@@ -14,6 +14,7 @@ const Start = () => {
         padding: 10,
         paddingTop: 15,
         justifyContent: 'space-between',
+        backgroundColor: 'white',
       }}
     >
       <View>
