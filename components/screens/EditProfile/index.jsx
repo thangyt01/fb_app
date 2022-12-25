@@ -1,16 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import dayjs from 'dayjs';
-import React, { useRef } from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Button, Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { getProfile } from '../../../apis/auth.api';
 import backgroundImage from '../../../assets/banner.png';
 import BottomSheetEditProfile from '../../bottomSheets/BottomSheetEditProfile';
 import Avatar from '../../layouts/Avatar';
-import Title from '../../layouts/Title';
 import Spinner from '../Spinner';
-import DataRow from './DataRow';
-import DetailItem from './DetailItem';
+import Section from './Section';
+import Row from './Row';
+import formatTime from '../../../utils/formatTime';
 
 const EditProfile = () => {
   const navigation = useNavigation();
@@ -25,34 +25,37 @@ const EditProfile = () => {
     return <Spinner />;
   }
 
-  return (
-    <View style={{ backgroundColor: 'white' }}>
-      <Pressable onPress={() => navigation.goBack()}>
-        <Title name="Edit profile" />
-      </Pressable>
-
-      <ScrollView
-        style={{
-          padding: 10,
-          top: 70,
-          marginBottom: 50,
-        }}
-        showsVerticalScrollIndicator={false}
-      >
-        <DataRow
-          name="Name"
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          title="Edit"
+          color="#2270DC"
           onPress={() => {
             editProfileRef.current.present();
           }}
-        >
+        />
+      ),
+    });
+  }, []);
+
+  return (
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
+      <ScrollView
+        style={{
+          padding: 10,
+        }}
+        showsVerticalScrollIndicator={false}
+      >
+        <Section name="Name">
           <Text style={{ fontSize: 20 }}>{profile.firstname}</Text>
-        </DataRow>
+        </Section>
 
-        <DataRow name="Profile">
+        <Section name="Profile">
           <Avatar size={150} />
-        </DataRow>
+        </Section>
 
-        <DataRow name="Cover photo">
+        <Section name="Cover photo">
           <Image
             source={backgroundImage}
             style={{
@@ -62,14 +65,9 @@ const EditProfile = () => {
               marginVertical: 10,
             }}
           />
-        </DataRow>
+        </Section>
 
-        <DataRow
-          name="Details"
-          onPress={() => {
-            editProfileRef.current.present();
-          }}
-        >
+        <Section name="Details">
           <View
             style={{
               marginVertical: 10,
@@ -77,16 +75,13 @@ const EditProfile = () => {
               overflow: 'scroll',
             }}
           >
-            <DetailItem
-              icon="clockcircle"
-              content={dayjs(profile.created_at).format('DD MMMM, YYYY')}
-            />
-            <DetailItem icon="home" content={profile.address} />
-            <DetailItem icon="folderopen" content="Work at HUST" />
+            <Row icon="clockcircle" content={formatTime(profile.created_at)} />
+            <Row icon="home" content={profile.address} />
+            <Row icon="folderopen" content="Work at HUST" />
           </View>
-        </DataRow>
+        </Section>
 
-        <DataRow name="Links" onPress={() => editProfileRef.current.present()}>
+        <Section name="Links">
           <View
             style={{
               marginVertical: 10,
@@ -94,10 +89,10 @@ const EditProfile = () => {
               overflow: 'scroll',
             }}
           >
-            <DetailItem icon="twitter" content={profile.link_twitter} />
-            <DetailItem icon="github" content={profile.link_github} />
+            <Row icon="twitter" content={profile.link_twitter} />
+            <Row icon="github" content={profile.link_github} />
           </View>
-        </DataRow>
+        </Section>
       </ScrollView>
 
       <BottomSheetEditProfile
@@ -106,7 +101,7 @@ const EditProfile = () => {
         title="Edit profile"
         data={[
           {
-            icon: 'home',
+            icon: 'user',
             field: 'name',
             value: profile.firstname,
           },
@@ -123,12 +118,12 @@ const EditProfile = () => {
           {
             icon: 'twitter',
             field: 'twitter',
-            value: profile.link_twitter, /// them link
+            value: profile.link_twitter,
           },
           {
             icon: 'github',
             field: 'github',
-            value: profile.link_github, // them link
+            value: profile.link_github,
           },
         ]}
       ></BottomSheetEditProfile>

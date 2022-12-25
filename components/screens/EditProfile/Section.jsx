@@ -20,7 +20,7 @@ const Header = ({ name, children, onEdit, styles, onPress }) => {
         >
           {name}
         </Text>
-        <Pressable onPress={onPress}>
+        {/* <Pressable onPress={onPress}>
           <Text
             style={{
               fontSize: 15,
@@ -29,7 +29,7 @@ const Header = ({ name, children, onEdit, styles, onPress }) => {
           >
             Edit
           </Text>
-        </Pressable>
+        </Pressable> */}
       </View>
 
       <View

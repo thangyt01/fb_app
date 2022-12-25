@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import { useRegister } from '../../../context/RegisterContext';
 import StyledButton from '../../layouts/Button';
 import StyledTextInput from '../../layouts/TextInput';
@@ -9,6 +9,23 @@ const InputPhoneNumber = () => {
   const navigation = useNavigation();
   const { dispatchRegister, registerState } = useRegister();
   const [phone, setPhone] = useState(registerState.phone);
+  const [error, setError] = useState('');
+
+  const isNext = phone && !error;
+  console.log({ isNext: isNext });
+
+  const onCheck = text => {
+    const isValidPhone = text.match(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g);
+    if (!isValidPhone) {
+      setError('Invalid phone number');
+    } else {
+      setError('');
+    }
+  };
+
+  useEffect(() => {
+    setError('');
+  }, []);
 
   return (
     <View
@@ -19,17 +36,30 @@ const InputPhoneNumber = () => {
         backgroundColor: 'white',
       }}
     >
-      <StyledTextInput
-        paddingHorizontal={12}
-        marginVertical={5}
-        placeholder="Mobile number"
-        fontSize={14}
-        keyboardType="numeric"
-        value={phone}
-        onChange={text => {
-          setPhone(text);
-        }}
-      />
+      <View>
+        <StyledTextInput
+          paddingHorizontal={12}
+          marginVertical={5}
+          placeholder="Mobile number"
+          fontSize={14}
+          keyboardType="numeric"
+          value={phone}
+          onChange={text => {
+            setPhone(text);
+            onCheck(text);
+          }}
+        />
+
+        {error && (
+          <Text
+            style={{
+              color: 'red',
+            }}
+          >
+            {error}
+          </Text>
+        )}
+      </View>
       <StyledButton
         onPress={() => {
           dispatchRegister({
@@ -45,9 +75,9 @@ const InputPhoneNumber = () => {
         styles={{
           paddingVertical: 14,
         }}
-        disable={!phone}
-        backgroundColor={!phone ? '#ccc' : '#2270DC'}
-        color={!phone ? 'black' : 'white'}
+        disable={!isNext}
+        backgroundColor={isNext ? '#2270DC' : '#ccc'}
+        color={isNext ? 'white' : 'black'}
       />
     </View>
   );

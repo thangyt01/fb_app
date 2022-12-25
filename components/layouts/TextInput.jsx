@@ -5,9 +5,10 @@ const StyledTextInput = ({
   placeholder,
   editable,
   keyboardType,
-  onChange,
   value,
   secureTextEntry,
+  onChange,
+  onBlur,
   bgColor = 'white',
   width = '100%',
   height = 50,
@@ -31,6 +32,7 @@ const StyledTextInput = ({
         ...props,
       }}
       onChangeText={onChange}
+      onBlur={onBlur}
       placeholder={placeholder}
       editable={editable}
       keyboardType={keyboardType}

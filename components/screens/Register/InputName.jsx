@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useRegister } from '../../../context/RegisterContext';
 import StyledButton from '../../layouts/Button';
@@ -13,8 +13,20 @@ const InputName = () => {
   const [firstname, setFirstname] = useState(registerState.firstname);
   const [lastname, setLastname] = useState(registerState.lastname);
   const [email, setEmail] = useState(registerState.email);
+  const [error, setError] = useState('');
 
-  const disableButton = !firstname || !lastname || !email;
+  const isNext = firstname && lastname && email && !error;
+
+  const onCheck = text => {
+    const isValidEmail = text.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+
+    if (!isValidEmail) setError('Invalid email');
+    else setError('');
+  };
+
+  useEffect(() => {
+    setError('');
+  }, []);
 
   return (
     <View
@@ -63,8 +75,11 @@ const InputName = () => {
           fontSize={14}
           onChange={text => {
             setEmail(text);
+            onCheck(text);
           }}
         />
+
+        {error && <Text style={{ color: 'red' }}>{error}</Text>}
       </View>
 
       <StyledButton
@@ -80,9 +95,9 @@ const InputName = () => {
         styles={{
           paddingVertical: 14,
         }}
-        disable={disableButton}
-        backgroundColor={disableButton ? '#ccc' : '#2270DC'}
-        color={disableButton ? 'black' : 'white'}
+        disable={!isNext}
+        backgroundColor={isNext ? '#2270DC' : '#ccc'}
+        color={isNext ? 'white' : 'black'}
       />
     </View>
   );

@@ -13,7 +13,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react', 'react-native'],
+  plugins: ['react', 'react-native', 'react-hooks'],
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: ['error', 'single'],
@@ -28,5 +28,7 @@ module.exports = {
     'react-native/split-platform-components': ['warn'],
     'react-native/no-inline-styles': ['off'],
     'react-native/no-color-literals': ['off'],
+    'react-hooks/rules-of-hooks': ['warn'],
+    'react-hooks/exhaustive-deps': ['warn'],
   },
 };

@@ -1,5 +1,4 @@
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
   ScrollView,
@@ -8,103 +7,65 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import Conan from '../../assets/conan.jpeg';
 import Avatar from '../layouts/Avatar';
-import Divider from '../layouts/Divider';
 
 const Search = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView
+    <View
       style={{
         backgroundColor: 'white',
-        height: '100%',
+        flex: 1,
+        padding: 10,
       }}
     >
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="white"
-        translucent={true}
+      <TextInput
+        style={{
+          height: 40,
+          paddingHorizontal: 20,
+          borderRadius: 20,
+          borderWidth: 1,
+          borderColor: '#ccc',
+          marginVertical: 10,
+        }}
+        placeholder="Search..."
       />
-      <View
+
+      <Text>History</Text>
+
+      <ScrollView
         style={{
           marginTop: 10,
-          paddingHorizontal: 10,
         }}
+        showsVerticalScrollIndicator={false}
       >
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 20,
-          }}
-        >
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <AntDesignIcon name="arrowleft" size={30} />
-          </TouchableOpacity>
-
-          <TextInput
-            style={{
-              marginLeft: 5,
-              paddingHorizontal: 20,
-              paddingVertical: 5,
-              borderRadius: 20,
-              flexGrow: 1,
-              backgroundColor: '#eee',
-            }}
-            placeholder="Search..."
-          />
-        </View>
-
-        <Divider
-          height={1}
-          styles={{
-            marginHorizontal: -10,
-          }}
-        />
-        <Text
-          style={{
-            fontSize: 16,
-          }}
-        >
-          History
-        </Text>
-
-        <ScrollView
-          style={{
-            marginTop: 10,
-          }}
-          showsVerticalScrollIndicator={false}
-        >
-          {Array.from(Array(10).keys()).map((_, i) => (
-            <TouchableOpacity key={i}>
+        {Array.from(Array(10).keys()).map((_, i) => (
+          <TouchableOpacity key={i}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginBottom: 10,
+              }}
+            >
               <View
                 style={{
                   flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  marginBottom: 10,
+                  alignItems: 'center',
                 }}
               >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Avatar source={Conan} styles={{ marginRight: 5 }} />
-                  <Text>Conan</Text>
-                </View>
-                <AntDesignIcon name="close" size={25} />
+                <Avatar source={Conan} styles={{ marginRight: 5 }} />
+                <Text>Conan</Text>
               </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    </SafeAreaView>
+              <AntDesignIcon name="close" size={25} />
+            </View>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 

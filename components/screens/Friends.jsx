@@ -36,16 +36,16 @@ const Friends = () => {
   return (
     <Fragment>
       <View
-        style={{ flex: 1, backgroundColor: 'white', flexDirection: 'column' }}
+        style={{
+          flex: 1,
+          padding: 10,
+          backgroundColor: 'white',
+        }}
       >
-        <Pressable onPress={() => navigation.goBack()}>
-          <Title name="Friends" />
-        </Pressable>
-        <Search marginTop={80} marginHorizontal={10} />
+        <Search />
 
         <View
           style={{
-            paddingHorizontal: 15,
             flexDirection: 'column',
           }}
         >

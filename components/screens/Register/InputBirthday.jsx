@@ -5,7 +5,7 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useRegister } from '../../../context/RegisterContext';
 import StyledButton from '../../layouts/Button';
 import StyledTextInput from '../../layouts/TextInput';
-import dayjs from 'dayjs';
+import formatTime from '../../../utils/formatTime';
 
 const InputBirthday = () => {
   const navigation = useNavigation();
@@ -48,7 +48,7 @@ const InputBirthday = () => {
           placeholder="Birthday"
           fontSize={14}
           editable={false}
-          value={dayjs(date).format('DD, MMMM YYYY')}
+          value={formatTime(date)}
         />
       </Pressable>
 

@@ -5,16 +5,18 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import { editProfile } from '../../apis/auth.api';
 import StyledButton from '../layouts/Button';
+import Gap from '../layouts/Gap';
 
-const MyRow = ({ title, icon, value, field, setInputForm, inputForm }) => {
+const Section = ({ title, icon, value, field, setInputForm, inputForm }) => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Text style={styles.label}>{title}</Text>
       <View>
         <View style={[styles.itemsCenter, styles.flexRow]}>
           <AntDesignIcon name={icon} size={20} />
           <Text style={{ margin: 5 }}>{field}</Text>
         </View>
+        <Gap size={3} direction="vertical" />
         <TextInput
           value={value}
           style={styles.textInput}
@@ -33,17 +35,18 @@ const BottomSheetEditProfile = React.forwardRef(
       name: name.value,
       address: address.value,
       company: company.value,
-      twitterLink: twitterLink.value,
-      githubLink: githubLink.value,
+      twitter: twitterLink.value,
+      github: githubLink.value,
     });
 
     const queryClient = useQueryClient();
 
     const { mutate } = useMutation({
       mutationFn: body => editProfile(body),
-      onSuccess: () => {
-        console.log('Success');
-        queryClient.invalidateQueries({ queryKey: ['my-profile'] });
+      onSuccess: response => {
+        console.log(response);
+        queryClient.invalidateQueries({ queryKey: ['myProfile'] });
+        ref.current.close();
       },
     });
 
@@ -53,13 +56,14 @@ const BottomSheetEditProfile = React.forwardRef(
         snapPoints={snapPoints}
         containerStyle={{
           backgroundColor: '#343434cc',
+          flex: 1,
         }}
       >
         <Text style={styles.title}>{title}</Text>
         <View style={styles.form}>
           <BottomSheetScrollView showsVerticalScrollIndicator={false}>
             <View style={{ paddingBottom: 20 }}>
-              <MyRow
+              <Section
                 field={name.field}
                 icon={name.icon}
                 title={name.title}
@@ -67,7 +71,7 @@ const BottomSheetEditProfile = React.forwardRef(
                 setInputForm={setInputForm}
                 inputForm={inputForm}
               />
-              <MyRow
+              <Section
                 field={address.field}
                 icon={address.icon}
                 title={address.title}
@@ -75,7 +79,7 @@ const BottomSheetEditProfile = React.forwardRef(
                 setInputForm={setInputForm}
                 inputForm={inputForm}
               />
-              <MyRow
+              <Section
                 field={company.field}
                 icon={company.icon}
                 title={company.title}
@@ -83,19 +87,19 @@ const BottomSheetEditProfile = React.forwardRef(
                 setInputForm={setInputForm}
                 inputForm={inputForm}
               />
-              <MyRow
+              <Section
                 field={twitterLink.field}
                 icon={twitterLink.icon}
                 title={twitterLink.title}
-                value={inputForm.twitterLink}
+                value={inputForm.twitter}
                 setInputForm={setInputForm}
                 inputForm={inputForm}
               />
-              <MyRow
+              <Section
                 field={githubLink.field}
                 icon={githubLink.icon}
                 title={githubLink.title}
-                value={inputForm.githubLink}
+                value={inputForm.github}
                 setInputForm={setInputForm}
                 inputForm={inputForm}
               />
@@ -104,7 +108,14 @@ const BottomSheetEditProfile = React.forwardRef(
           <StyledButton
             title="SUBMIT"
             styles={{ padding: 10 }}
-            onPress={() => mutate({ firstname: inputForm.name })}
+            onPress={() =>
+              mutate({
+                firstname: inputForm.name,
+                address: inputForm.address,
+                link_twitter: inputForm.twitter,
+                link_github: inputForm.github,
+              })
+            }
           />
         </View>
       </BottomSheetModal>

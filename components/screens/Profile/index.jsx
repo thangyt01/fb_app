@@ -1,6 +1,6 @@
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import {
   Image,
   Pressable,
@@ -15,13 +15,13 @@ import Avatar from '../../layouts/Avatar';
 import StyledButton from '../../layouts/Button';
 import Divider from '../../layouts/Divider';
 import Post from '../../layouts/Post';
-import Title from '../../layouts/Title';
 import Input from '../../layouts/Input';
 import Spinner from '../Spinner';
-import DetailItem from '../EditProfile/DetailItem';
-import dayjs from 'dayjs';
+import Row from '../EditProfile/Row';
+import formatTime from '../../../utils/formatTime';
+import Gap from '../../layouts/Gap';
 
-const Profile = () => {
+const Profile = ({ isMe = true }) => {
   const navigation = useNavigation();
 
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
@@ -37,15 +37,10 @@ const Profile = () => {
     <View
       style={{
         flex: 1,
+        backgroundColor: 'white',
       }}
     >
-      <Pressable onPress={() => navigation.goBack()}>
-        <Title name="Profile" />
-      </Pressable>
-      <ScrollView
-        style={{ flex: 1, top: 70 }}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <View>
           <Image
             source={backgroundImage}
@@ -71,29 +66,41 @@ const Profile = () => {
         >
           <View
             style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
               width: '100%',
               marginBottom: 15,
+              flexDirection: `${isMe ? 'row' : 'column'}`,
+              justifyContent: 'space-between',
             }}
           >
             <Text style={{ fontSize: 30, fontWeight: 'bold' }}>
               {profile?.firstname}
             </Text>
-            <StyledButton
-              title="Edit profile"
-              icon="edit"
-              styles={{ paddingVertical: 10 }}
-              onPress={() => navigation.navigate('editProfile')}
-            />
-            {/* <StyledButton title="Add friend" icon="adduser" /> */}
-            {/* <StyledButton
-              title="Friend"
-              icon="user"
-              backgroundColor="#E5E7EC"
-              color="black"
-              colorIcon="black"
-            /> */}
+            <Gap size={5} direction="vertical" />
+            {isMe ? (
+              <StyledButton
+                title="Edit profile"
+                icon="edit"
+                styles={{ paddingVertical: 10 }}
+                onPress={() => navigation.navigate('editProfile')}
+              />
+            ) : (
+              <View style={{ flexDirection: 'row' }}>
+                <StyledButton
+                  title="Add friend"
+                  icon="adduser"
+                  styles={{ paddingVertical: 10 }}
+                />
+                <Gap size={10} />
+                <StyledButton
+                  title="Friend"
+                  icon="user"
+                  backgroundColor="#E5E7EC"
+                  color="black"
+                  colorIcon="black"
+                  styles={{ paddingVertical: 10 }}
+                />
+              </View>
+            )}
           </View>
           <Divider
             height={12}
@@ -122,13 +129,10 @@ const Profile = () => {
               marginVertical: 10,
             }}
           >
-            <DetailItem
-              content={dayjs(profile?.created_at).format('DD MMMM, YYYY')}
-              icon="clockcircle"
-            />
-            <DetailItem icon="home" content={profile.address} />
+            <Row content={formatTime(profile.created_at)} icon="clockcircle" />
+            <Row icon="home" content={profile.address} />
             <Pressable onPress={() => navigation.navigate('editProfile')}>
-              <DetailItem content="See your About info" icon="ellipsis1" />
+              <Row content="See your About info" icon="ellipsis1" />
             </Pressable>
           </View>
 

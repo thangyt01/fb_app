@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Alert } from 'react-native';
 import http from '../utils/http';
 
 const login = async ({ username, password }) => {
@@ -17,7 +16,7 @@ const login = async ({ username, password }) => {
 
 const register = async body => {
   try {
-    const { lastname, ...data } = body;
+    const { lastname, ..._data } = body;
     const response = await http.post('register', {
       ...body,
       birthday: '2001-01-01',
@@ -34,7 +33,7 @@ const register = async body => {
 
 const logout = async () => {
   try {
-    await http.post('https://devapi.bkwatch.me/api/logout');
+    await http.post('logout');
   } catch (error) {
     console.log(error);
   }
@@ -51,7 +50,8 @@ const getProfile = async () => {
 
 const editProfile = async body => {
   try {
-    await http.post('profile', body);
+    const response = await http.post('profile', body);
+    return response;
   } catch (error) {
     console.log(error);
   }

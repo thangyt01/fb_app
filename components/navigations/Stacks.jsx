@@ -13,6 +13,8 @@ import Profile from '../screens/Profile';
 import EditProfile from '../screens/EditProfile';
 import Search from '../screens/Search';
 import Register from '../screens/Register';
+import { Button, Text } from 'react-native';
+import StyledButton from '../layouts/Button';
 
 const Stacks = () => {
   const Stack = createNativeStackNavigator();
@@ -43,35 +45,77 @@ const Stacks = () => {
         });
       }
     });
-  }, []);
+  }, [dispatchAuth]);
 
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
           animation: 'slide_from_right',
         }}
       >
         {isLogged ? (
           <React.Fragment>
-            <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="friends" component={Friends} />
-            <Stack.Screen name="profile" component={Profile} />
-            <Stack.Screen name="editProfile" component={EditProfile} />
-            <Stack.Screen name="search" component={Search} />
+            <Stack.Screen
+              name="home"
+              component={Home}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="friends"
+              component={Friends}
+              options={{
+                headerTitle: 'Friends',
+              }}
+            />
+            <Stack.Screen
+              name="profile"
+              component={Profile}
+              options={{
+                headerTitle: 'Profile',
+              }}
+            />
+            <Stack.Screen
+              name="editProfile"
+              component={EditProfile}
+              options={{
+                headerTitle: 'Edit profile',
+              }}
+            />
+            <Stack.Screen
+              name="search"
+              component={Search}
+              options={{
+                headerTitle: 'Search',
+              }}
+            />
             <Stack.Screen
               name="createPost"
               component={CreatePost}
               options={{
+                headerTitle: 'POST',
                 animation: 'slide_from_bottom',
               }}
             />
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Stack.Screen name="login" component={Login} />
-            <Stack.Screen name="register" component={Register} />
+            <Stack.Screen
+              name="login"
+              component={Login}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="register"
+              component={Register}
+              options={{
+                headerShown: false,
+              }}
+            />
           </React.Fragment>
         )}
       </Stack.Navigator>

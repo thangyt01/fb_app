@@ -17,6 +17,7 @@ const StyledButton = ({
   const renderContent = (
     <View
       style={{
+        flexGrow: 0,
         backgroundColor,
         paddingHorizontal: 16,
         borderRadius,

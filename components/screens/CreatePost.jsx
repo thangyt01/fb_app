@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMutation } from '@tanstack/react-query';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Image,
@@ -15,7 +15,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import { pickImage } from '../../utils/pickImage';
 import Avatar from '../layouts/Avatar';
-import Divider from '../layouts/Divider';
 
 const CreatePost = () => {
   const navigation = useNavigation();
@@ -37,23 +36,25 @@ const CreatePost = () => {
       });
   };
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button title="POST" disabled={!content} />,
+    });
+  }, [content, navigation]);
+
   return (
     <SafeAreaView
       style={{
-        height: '100%',
         padding: 10,
         backgroundColor: 'white',
+        flex: 1,
       }}
     >
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="white"
-        translucent={true}
-      />
-      <View style={{ flex: 1 }}>
+      <ScrollView>
         <View
           style={{
             flexDirection: 'row',
+            alignItems: 'center',
             justifyContent: 'space-between',
           }}
         >
@@ -63,148 +64,108 @@ const CreatePost = () => {
               alignItems: 'center',
             }}
           >
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <AntDesignIcon name="arrowleft" size={25} />
-            </TouchableOpacity>
-
-            <Text
-              style={{
-                marginLeft: 15,
-                fontSize: 20,
-                fontWeight: 'bold',
-              }}
-            >
-              POST
-            </Text>
-          </View>
-
-          <Button title="POST" disabled={!content} />
-        </View>
-
-        <Divider
-          height={1}
-          styles={{
-            marginVertical: 10,
-            marginHorizontal: -10,
-          }}
-        />
-        <ScrollView>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
+            <Avatar size={70} />
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
+                marginLeft: 12,
               }}
             >
-              <Avatar size={70} />
-              <View
+              <Text
                 style={{
-                  marginLeft: 12,
+                  fontWeight: 'bold',
+                  fontSize: 18,
+                  marginBottom: 4,
                 }}
               >
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    fontSize: 18,
-                    marginBottom: 4,
-                  }}
-                >
-                  Chu Hien
-                </Text>
+                Chu Hien
+              </Text>
 
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
+                    borderWidth: 1,
+                    borderColor: '#e5e7ec',
+                    borderRadius: 5,
+                    padding: 4,
                   }}
                 >
-                  <View
+                  <AntDesignIcon name="earth" size={12} color="gray" />
+                  <Text
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      borderWidth: 1,
-                      borderColor: '#e5e7ec',
-                      borderRadius: 5,
-                      padding: 4,
+                      fontWeight: '500',
+                      color: 'gray',
+                      marginHorizontal: 5,
                     }}
                   >
-                    <AntDesignIcon name="earth" size={12} color="gray" />
-                    <Text
-                      style={{
-                        fontWeight: '500',
-                        color: 'gray',
-                        marginHorizontal: 5,
-                      }}
-                    >
-                      Public
-                    </Text>
-                    <AntDesignIcon name="down" size={12} color="gray" />
-                  </View>
-                  <TouchableOpacity
-                    onPress={handlePickImage}
-                    style={{ marginLeft: 12 }}
-                  >
-                    <AntDesignIcon name="picture" color="#4CAF50" size={30} />
-                  </TouchableOpacity>
+                    Public
+                  </Text>
+                  <AntDesignIcon name="down" size={12} color="gray" />
                 </View>
+                <TouchableOpacity
+                  onPress={handlePickImage}
+                  style={{ marginLeft: 12 }}
+                >
+                  <AntDesignIcon name="picture" color="#4CAF50" size={30} />
+                </TouchableOpacity>
               </View>
             </View>
-
-            <Text style={{ color: '#0778E9' }}>{content.length} / 150</Text>
           </View>
 
+          <Text style={{ color: '#0778E9' }}>{content.length} / 150</Text>
+        </View>
+
+        <View>
           <View>
-            <View>
-              <TextInput
-                placeholder="What's on your mind?"
-                style={{ fontSize: 20, marginTop: 15 }}
-                onChangeText={text => setContent(text)}
-                multiline
-                maxLength={150}
-                autoFocus
-              />
-            </View>
-            <View style={{ marginTop: 20 }}>
-              {images &&
-                images.map(image => (
-                  <View key={image.uri}>
-                    <Image
-                      source={{ uri: image.uri }}
-                      style={{
-                        flex: 1,
-                        aspectRatio: image.width / image.height,
-                        borderRadius: 10,
-                      }}
-                    />
-
-                    <TouchableOpacity
-                      style={{
-                        position: 'absolute',
-                        top: 8,
-                        right: 8,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        width: 30,
-                        height: 30,
-                        borderRadius: 1000,
-                        backgroundColor: '#eeee',
-                      }}
-                      onPress={() => setImages([])}
-                    >
-                      <AntDesignIcon name="close" size={25} color="gray" />
-                    </TouchableOpacity>
-                  </View>
-                ))}
-            </View>
+            <TextInput
+              placeholder="What's on your mind?"
+              style={{ fontSize: 20, marginTop: 15 }}
+              onChangeText={text => setContent(text)}
+              multiline
+              maxLength={150}
+              autoFocus
+            />
           </View>
-        </ScrollView>
-      </View>
+          <View style={{ marginTop: 20 }}>
+            {images &&
+              images.map(image => (
+                <View key={image.uri}>
+                  <Image
+                    source={{ uri: image.uri }}
+                    style={{
+                      flex: 1,
+                      aspectRatio: image.width / image.height,
+                      borderRadius: 10,
+                    }}
+                  />
+
+                  <TouchableOpacity
+                    style={{
+                      position: 'absolute',
+                      top: 8,
+                      right: 8,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: 30,
+                      height: 30,
+                      borderRadius: 1000,
+                      backgroundColor: '#eeee',
+                    }}
+                    onPress={() => setImages([])}
+                  >
+                    <AntDesignIcon name="close" size={25} color="gray" />
+                  </TouchableOpacity>
+                </View>
+              ))}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -15,6 +15,7 @@ const Finish = () => {
     try {
       console.log({ registerState });
       const response = await register(registerState);
+      console.log({ response });
 
       if (response.code === 1000) {
         const { email, password } = registerState;
